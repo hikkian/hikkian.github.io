@@ -82,6 +82,9 @@ p { margin: 0; }
   cursor: grab;
 }
 .strip::-webkit-scrollbar { display: none; }
+.strip.dragging { cursor: grabbing; }
+.strip:focus:not(:focus-visible) { outline: none; }
+.frame img { -webkit-user-drag: none; user-select: none; }
 .frame { margin: 0; flex: 0 0 auto; scroll-snap-align: center; }
 .frame img {
   height: 38vh; width: auto; min-height: 240px; max-height: 420px;

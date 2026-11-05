@@ -24,29 +24,54 @@
   start.querySelector('img').decode?.().then(centre, () => {});
   addEventListener('load', centre, { once: true });
 
-  let down = false, x0 = 0, s0 = 0, moved = false;
+  const centreOf = f => f.offsetLeft + f.offsetWidth / 2 - strip.clientWidth / 2;
+  const nearest = x => frames.reduce((b, f) => Math.abs(centreOf(f) - x) < Math.abs(centreOf(b) - x) ? f : b, frames[0]);
+  let restore = 0;
+  const glide = left => {
+    strip.style.scrollSnapType = 'none';
+    strip.scrollTo({ left, behavior: reduce ? 'auto' : 'smooth' });
+    clearTimeout(restore);
+    const done = () => { clearTimeout(restore); strip.style.scrollSnapType = ''; strip.removeEventListener('scrollend', done); };
+    strip.addEventListener('scrollend', done);
+    restore = setTimeout(done, 900);
+  };
+
+  strip.addEventListener('dragstart', e => e.preventDefault());
+  strip.addEventListener('mousedown', e => e.preventDefault());
+  let down = false, x0 = 0, s0 = 0, moved = false, lastX = 0, lastT = 0, v = 0;
   strip.addEventListener('pointerdown', e => {
-    if (e.pointerType !== 'mouse') return;
-    down = true; moved = false; x0 = e.clientX; s0 = strip.scrollLeft;
-    strip.style.scrollSnapType = 'none'; strip.style.cursor = 'grabbing';
+    if (e.pointerType !== 'mouse' || e.button !== 0) return;
+    down = true; moved = false; x0 = lastX = e.clientX; lastT = performance.now(); v = 0; s0 = strip.scrollLeft;
+    clearTimeout(restore);
+    strip.style.scrollSnapType = 'none'; strip.style.scrollBehavior = 'auto'; strip.classList.add('dragging');
   });
   addEventListener('pointermove', e => {
     if (!down) return;
     const dx = e.clientX - x0;
-    if (Math.abs(dx) > 3) moved = true;
+    if (Math.abs(dx) > 4) moved = true;
+    const t = performance.now();
+    if (t > lastT) v = 0.8 * ((e.clientX - lastX) / (t - lastT)) + 0.2 * v;
+    lastX = e.clientX; lastT = t;
     strip.scrollLeft = s0 - dx;
   });
-  addEventListener('pointerup', () => {
+  addEventListener('pointerup', e => {
     if (!down) return;
-    down = false; strip.style.scrollSnapType = ''; strip.style.cursor = '';
+    down = false; strip.style.scrollBehavior = ''; strip.classList.remove('dragging');
+    if (!moved) {
+      const f = e.target.closest && e.target.closest('.frame');
+      glide(centreOf(f || nearest(strip.scrollLeft)));
+      return;
+    }
+    if (performance.now() - lastT > 80) v = 0;
+    glide(centreOf(nearest(strip.scrollLeft - v * 220)));
   });
-  strip.addEventListener('click', e => { if (moved) e.preventDefault(); }, true);
+  strip.addEventListener('click', e => { if (moved) { e.preventDefault(); e.stopPropagation(); } }, true);
   strip.addEventListener('keydown', e => {
     if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
     e.preventDefault();
     const lit = frames.findIndex(f => f.classList.contains('lit'));
     const next = frames[Math.max(0, Math.min(frames.length - 1, lit + (e.key === 'ArrowRight' ? 1 : -1)))];
-    strip.scrollTo({ left: next.offsetLeft + next.offsetWidth / 2 - strip.clientWidth / 2, behavior: reduce ? 'auto' : 'smooth' });
+    glide(centreOf(next));
   });
 
   /* Language: English in the markup, Russian in data-ru. */
