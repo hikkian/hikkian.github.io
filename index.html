@@ -9,10 +9,14 @@
 <meta property="og:description" content="I build AI that runs on your own hardware: a 35B coding model on one 16 GB gaming GPU, agent tooling, and ERP backends.">
 <meta property="og:image" content="https://hikkian.github.io/img/barid-panel.webp">
 <meta name="theme-color" content="#111312">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23111312'/%3E%3Ctext x='16' y='22' font-family='Arial' font-weight='700' font-size='15' fill='%237ee0c3' text-anchor='middle'%3EAS%3C/text%3E%3C/svg%3E">
+<meta property="og:url" content="https://hikkian.github.io/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://hikkian.github.io/">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="alternate icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23111312'/%3E%3Ctext x='16' y='22' font-family='Arial' font-weight='700' font-size='15' fill='%237ee0c3' text-anchor='middle'%3EAS%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=TikTok+Sans:wdth,wght@75..150,300..900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"><!-- taste-skill-ignore: mono only for the code in the terminal -->
+<link href="https://fonts.googleapis.com/css2?family=TikTok+Sans:wdth,wght@75..150,300..900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -25,7 +29,7 @@
       <a href="#projects" data-ru="Проекты">Projects</a>
       <a href="#work" data-ru="Опыт">Experience</a>
       <a href="#contact" data-ru="Контакты">Contact</a>
-      <button class="lang" type="button" id="lang" aria-label="Switch language">RU</button>
+      <button class="lang" type="button" id="lang" title="Русский / English">RU</button>
     </nav>
   </div>
 </header>
@@ -37,10 +41,14 @@
   <div class="hero-text">
     <p class="lead" data-ru="Алишер Шарипов, AI и backend-разработчик (Python, Go) в Астане. Запустил 35B-модель для программирования на одной игровой видеокарте 16 ГБ и сделал ERP-модуль зарплаты, который сходится с 1С до копейки.">Alisher Sharipov, AI and backend engineer (Python, Go) in Astana. I run a 35B coding model on one 16 GB gaming GPU, and I built an ERP payroll module that matches 1C to the cent.</p>
     <div class="actions">
-      <a class="button" id="cv-main" href="cv/Alisher_Sharipov_AI_Backend_EN.pdf" data-ru-href="cv/Alisher_Sharipov_AI_Backend_RU.pdf" data-ru="Скачать резюме (PDF)">Download CV (PDF)</a>
+      <a class="button" id="cv-main" download href="cv/Alisher_Sharipov_AI_Backend_EN.pdf" data-ru-href="cv/Alisher_Sharipov_AI_Backend_RU.pdf" data-ru="Скачать резюме (PDF)">Download CV (PDF)</a>
       <a class="button ghost" href="https://github.com/hikkian">GitHub</a>
-      <a class="quiet" id="cv-alt" href="cv/Alisher_Sharipov_AI_Backend_RU.pdf" data-ru-href="cv/Alisher_Sharipov_AI_Backend_EN.pdf" data-ru="CV in English">Резюме на русском</a>
+      <a class="quiet" id="cv-alt" download href="cv/Alisher_Sharipov_AI_Backend_RU.pdf" data-ru-href="cv/Alisher_Sharipov_AI_Backend_EN.pdf" data-ru="CV in English">Резюме на русском</a>
     </div>
+    <ul class="skills-inline">
+      <li>Python</li><li>Go</li><li>FastAPI</li><li>SQL</li><li>llama.cpp</li><li>RAG</li><li>MCP</li><li>Docker</li><li>1C / OData</li>
+    </ul>
+    <p class="remote" data-ru="Открыт к удалённой работе.">Open to remote work.</p>
   </div>
 
   <figure class="term" data-ui aria-label="Shura answering locally at measured speed">
@@ -49,19 +57,25 @@
       <span class="term-state"><i class="live"></i><span data-ru="локально, без интернета">local, offline</span></span>
     </div>
     <div class="term-body">
-      <p class="t-user"><span class="t-mark">›</span> <span data-ru="Почему тест зарплаты падает на сентябре?">Why does the payroll test fail for September?</span></p>
-      <pre class="t-out" id="stream" aria-live="off"></pre>
+      <p class="t-user"><span class="t-mark">›</span> <span data-ru="Почему итог зарплаты расходится с 1С на копейку?">Why is the payroll total one cent off from 1C?</span></p>
+      <pre class="t-out done" id="stream" aria-live="off">payroll.py rounds every line before summing,
+so the rounding errors add up.
+
+- total = sum(round(x, 2) for x in lines)
++ total = round(sum(lines), 2)
+
+Tests: 48 of 48 passed.</pre>
     </div>
     <div class="term-status">
       <span>Tiel-Coder-35B · RX 7800 XT 16 GB</span>
-      <span><b id="tps">72.5</b> tok/s</span>
+      <span><b id="tps">93</b> tok/s</span>
     </div>
     <div class="term-ctx">
-      <span class="ctx-label" data-ru="Заполнено контекста">Context filled</span>
+      <span class="ctx-label" data-ru="Контекст">Context</span>
       <div class="chips" id="chips" role="radiogroup" aria-label="Context filled">
-        <button type="button" role="radio" data-i="0">12k</button>
-        <button type="button" role="radio" data-i="1">32k</button>
-        <button type="button" role="radio" data-i="2">177k</button>
+        <button type="button" role="radio" data-i="0" data-ru="короткий">short</button>
+        <button type="button" role="radio" data-i="1">28k</button>
+        <button type="button" role="radio" data-i="2">100k</button>
       </div>
     </div>
     <figcaption id="term-note"></figcaption>
@@ -72,7 +86,7 @@
   <h2 id="numbers-h" class="visually-hidden" data-ru="В цифрах">In numbers</h2>
   <ul>
     <li><b>35B</b><span data-ru="модель для кода на одной видеокарте 16 ГБ, контекст до 200 тыс. токенов">coding model on one 16 GB GPU, context up to 200k tokens</span></li>
-    <li><b data-ru="72 ток/с">72 tok/s</b><span data-ru="скорость ответа при открытом браузере и IDE, 1,5 ГиБ видеопамяти оставлено рабочему столу">answer speed with the browser and IDE open, 1.5 GiB of VRAM left to the desktop</span></li>
+    <li><b data-ru="93 ток/с">93 tok/s</b><span data-ru="скорость ответа на коротком контексте, 1,5 ГиБ видеопамяти остаются рабочему столу">answer speed on short context, with 1.5 GiB of VRAM kept free for the desktop</span></li>
     <li><b data-ru="0,14 с">0.14 s</b><span data-ru="восстановить сессию на 32 тыс. токенов (было 42 с)">to restore a 32k-token session (was 42 s)</span></li>
     <li><b data-ru="7 баз">7 DBs</b><span data-ru="1С синхронизируются с ERP, расчёт сходится до копейки">of 1C synced with the ERP, payroll matches to the cent</span></li>
   </ul>
@@ -87,11 +101,11 @@
       <p class="case-tag" data-ru="Локальный ИИ-агент для программирования">Local AI coding agent</p>
       <a class="case-link" href="https://github.com/hikkian/shura">github.com/hikkian/shura</a>
     </div>
-    <div class="shot light"><img src="img/shura-how.svg" width="1040" height="360" loading="lazy" alt="How Shura works: the coding agent talks to the gateway, the gateway runs llama-server, the model is split between GPU and RAM"></div>
+    <div class="shot light"><a class="shot-open" href="img/shura-how.svg" target="_blank" rel="noopener"><img src="img/shura-how.svg" width="1040" height="360" loading="lazy" alt="How Shura works: the coding agent talks to the gateway, the gateway runs llama-server, the model is split between GPU and RAM"></a></div>
     <div class="case-cols">
-      <div><h4 data-ru="Задача">Problem</h4><p data-ru="Сильные модели для кода не помещаются в 16 ГБ видеопамяти, а если помещаются, то рабочий стол начинает тормозить.">Strong coding models do not fit in 16 GB of VRAM, and when they do, the desktop starts to stutter.</p></div>
+      <div><h4 data-ru="Задача">Problem</h4><p data-ru="Сильные модели для кода не помещаются в 16 ГБ видеопамяти, а если помещаются, то рабочий стол начинает тормозить.">Strong coding models do not fit in 16 GB of VRAM, and when they fit, the desktop starts to stutter.</p></div>
       <div><h4 data-ru="Что сделал">What I built</h4><p data-ru="OpenAI-совместимый шлюз на Python: грузит модель по запросу, переживает сбои, сохраняет длинные сессии. Свой форк llama.cpp на C++ с кешем экспертов и контролем видеопамяти. Набор из 111 агентных задач для оценки.">An OpenAI-compatible gateway in Python that loads the model on demand, survives crashes and saves long sessions. My own llama.cpp fork in C++ with an expert cache and a VRAM governor. A harness of 111 agentic coding tasks.</p></div>
-      <div><h4 data-ru="Результат">Result</h4><p data-ru="72 ток/с на 12k контекста и 35 на 177k, промпт читается со скоростью до 1700 ток/с. Сессия на 32k токенов восстанавливается за 0,14 с вместо 42 с. 580+ тестов, CI на Linux, macOS и Windows.">72 tok/s at 12k context and 35 at 177k, prompts read at up to 1,700 tok/s. A 32k-token session restores in 0.14 s instead of 42 s. 580+ tests, CI on Linux, macOS and Windows.</p></div>
+      <div><h4 data-ru="Результат">Result</h4><p data-ru="93 ток/с на коротком контексте, 79 на 28k и 57 на 100k, промпт читается со скоростью до 1770 ток/с. Сессия на 32k токенов восстанавливается за 0,14 с вместо 42 с. 580+ тестов, CI на Linux, macOS и Windows.">93 tok/s on short context, 79 at 28k and 57 at 100k, prompts read at up to 1,770 tok/s. A 32k-token session restores in 0.14 s instead of 42 s. 580+ tests, CI on Linux, macOS and Windows.</p></div>
     </div>
     <p class="stack">Python · C++ · llama.cpp · ROCm / HIP · MCP · Docker</p>
   </article>
@@ -102,7 +116,7 @@
       <p class="case-tag" data-ru="Доска задач для нескольких ИИ-агентов">Task board for several AI agents</p>
       <a class="case-link" href="https://github.com/hikkian/barid">github.com/hikkian/barid</a>
     </div>
-    <div class="shot"><img src="img/barid-panel.webp" width="1120" height="760" loading="lazy" alt="Barid panel: three agents with their current tasks, a proposed task waiting for approval and the order in which tasks can run"></div>
+    <div class="shot"><a class="shot-open" href="img/barid-panel.webp" target="_blank" rel="noopener"><img src="img/barid-panel.webp" width="1120" height="760" loading="lazy" alt="Barid panel: three agents with their current tasks, a proposed task waiting for approval and the order in which tasks can run"></a></div>
     <div class="case-cols">
       <div><h4 data-ru="Задача">Problem</h4><p data-ru="Когда несколько агентов (Codex, Claude Code, локальная модель) работают параллельно, они берут одну и ту же задачу и одновременно занимают видеокарту.">When several agents (Codex, Claude Code, a local model) work in parallel, they pick the same task and fight over the GPU.</p></div>
       <div><h4 data-ru="Что сделал">What I built</h4><p data-ru="Очередь с зависимостями и арендой общих ресурсов, проверка результата человеком, автономный исполнитель с лимитами времени и веб-панель, которая сама считает, что можно запускать вместе.">A queue with dependencies and leases on shared resources, human review gates, an unattended worker with timeboxes, and a web panel that works out what can run together.</p></div>
@@ -118,9 +132,9 @@
       <a class="case-link" href="https://github.com/hikkian/open-go-academy">github.com/hikkian/open-go-academy</a>
     </div>
     <div class="shot-grid">
-      <div class="shot big"><img src="img/oga-editor.webp" width="1440" height="1000" loading="lazy" alt="Open Go Academy lesson: theory on the left, a Go editor with Run and Check buttons on the right"></div>
-      <div class="shot"><img src="img/oga-workspace.webp" width="1440" height="1036" loading="lazy" alt="Project workspace with tasks and an editor"></div>
-      <div class="shot"><img src="img/oga-skills.webp" width="1440" height="1036" loading="lazy" alt="Skills map with progress by topic"></div>
+      <div class="shot big"><a class="shot-open" href="img/oga-editor.webp" target="_blank" rel="noopener"><img src="img/oga-editor.webp" width="1440" height="1000" loading="lazy" alt="Open Go Academy lesson: theory on the left, a Go editor with Run and Check buttons on the right"></a></div>
+      <div class="shot"><a class="shot-open" href="img/oga-workspace.webp" target="_blank" rel="noopener"><img src="img/oga-workspace.webp" width="1440" height="1036" loading="lazy" alt="Project workspace with tasks and an editor"></a></div>
+      <div class="shot"><a class="shot-open" href="img/oga-skills.webp" target="_blank" rel="noopener"><img src="img/oga-skills.webp" width="1440" height="1036" loading="lazy" alt="Skills map with progress by topic"></a></div>
     </div>
     <div class="case-cols">
       <div><h4 data-ru="Задача">Problem</h4><p data-ru="Учить Go по статьям долго: нет места, где можно сразу запустить код и получить проверку.">Learning Go from articles is slow: there is no place to run code right away and get it checked.</p></div>

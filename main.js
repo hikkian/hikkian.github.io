@@ -10,13 +10,13 @@
   let lang = 'en';
 
   /* The live thing: Shura's measured decode speed by filled context, replayed at that speed. */
-  // FINAL2, 2026-10-23: RX 7800 XT 16 GB, 1.5 GiB VRAM reserve for the desktop, 256-token decode after prefill.
+  // Measured on an RX 7800 XT 16 GB with 1.5 GiB of VRAM left to the desktop.
   const data = [
-    { k: '12k', tps: 72.5, pp: 1738 }, { k: '32k', tps: 58.3, pp: 1570 }, { k: '177k', tps: 34.6, pp: 561 }
+    { k: 'short', ru: 'коротком контексте', tps: 93, pp: 0 }, { k: '28k', tps: 79, pp: 1766 }, { k: '100k', tps: 57, pp: 1066 }
   ];
   const answer = {
-    en: 'The 1C calendar has 21 working days in September,\nbut payroll.py uses a constant 22.\n\n- days = 22\n+ days = zup.calendar(month).working_days\n\nRan the tests: 48 passed.',
-    ru: 'В календаре 1С в сентябре 21 рабочий день,\nа payroll.py берёт константу 22.\n\n- days = 22\n+ days = zup.calendar(month).working_days\n\nЗапустил тесты: 48 прошли.'
+    en: 'payroll.py rounds every line before summing,\nso the rounding errors add up.\n\n- total = sum(round(x, 2) for x in lines)\n+ total = round(sum(lines), 2)\n\nTests: 48 of 48 passed.',
+    ru: 'payroll.py округляет каждую строку до сложения,\nи ошибки округления накапливаются.\n\n- total = sum(round(x, 2) for x in lines)\n+ total = round(sum(lines), 2)\n\nТесты: 48 из 48 прошли.'
   };
   const chips = [...document.querySelectorAll('#chips button')];
   const tps = document.getElementById('tps');
@@ -45,16 +45,18 @@
     raf = requestAnimationFrame(step);
   };
 
-  const fmt = n => n.toFixed(1).replace('.', lang === 'ru' ? ',' : '.');
+  const fmt = n => String(n);
   const updateDial = () => {
     const d = data[idx];
     rate = d.tps;
     tps.textContent = fmt(d.tps);
     chips.forEach((c, i) => { c.setAttribute('aria-checked', i === idx); c.tabIndex = i === idx ? 0 : -1; });
     const secs = Math.round(1000 / d.tps);
+    const ctx = lang === 'ru' ? (d.ru || `контексте ${d.k}`) : (d.k === 'short' ? 'a short context' : `${d.k} of context`);
+    const pp = d.pp ? (lang === 'ru' ? `промпт читается со скоростью ${d.pp.toLocaleString('ru')}\u00a0ток/с, ` : `the prompt is read at ${d.pp.toLocaleString('en')}\u00a0tok/s, `) : '';
     note.textContent = lang === 'ru'
-      ? `Повтор с измеренной скоростью при ${d.k} контекста: промпт читается со скоростью ${d.pp} ток/с, страница кода (~1000 токенов) пишется за ${secs} с.`
-      : `Replayed at the measured speed with ${d.k} of context: the prompt is read at ${d.pp.toLocaleString('en')} tok/s, a page of code (~1000 tokens) is written in ${secs} s.`;
+      ? `Повтор с измеренной скоростью при ${ctx}: ${pp}страница кода (~1000 токенов) пишется за ${secs}\u00a0с.`
+      : `Replayed at the measured speed with ${ctx}: ${pp}a page of code (~1000 tokens) is written in ${secs}\u00a0s.`;
   };
   const choose = i => { idx = Math.max(0, Math.min(data.length - 1, i)); updateDial(); if (seen) play(); };
   chips.forEach((c, i) => c.addEventListener('click', () => choose(i)));
@@ -65,12 +67,15 @@
   });
 
   const term = document.querySelector('.term');
-  new IntersectionObserver((es, o) => es.forEach(e => {
-    if (e.isIntersecting) { seen = true; play(); o.disconnect(); }
-  }), { threshold: 0.3 }).observe(term);
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver((es, o) => es.forEach(e => {
+      if (e.isIntersecting) { seen = true; play(); o.disconnect(); }
+    }), { threshold: 0.3 }).observe(term);
+  } else { seen = true; play(); }
 
   const setLang = l => {
-    lang = l;
+    lang = l === 'ru' ? 'ru' : 'en'; l = lang;
+    document.title = l === 'ru' ? 'Алишер Шарипов · AI и backend-разработчик' : 'Alisher Sharipov · AI and backend engineer';
     document.documentElement.lang = l;
     tr.forEach(el => { el.textContent = l === 'ru' ? el.dataset.ru : el.dataset.en; });
     hrefs.forEach(el => el.setAttribute('href', l === 'ru' ? el.dataset.ruHref : el.dataset.enHref));
