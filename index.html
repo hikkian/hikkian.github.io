@@ -4,151 +4,194 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Alisher Sharipov · AI and backend engineer</title>
-<meta name="description" content="Alisher Sharipov, AI and backend engineer in Astana. LLM systems on hardware you already own, ERP backends that match the accounting to the cent.">
+<meta name="description" content="Alisher Sharipov, AI and backend engineer (Python, Go) in Astana. Local LLM systems on consumer hardware and ERP backends that match the accounting to the cent.">
 <meta property="og:title" content="Alisher Sharipov · AI and backend engineer">
-<meta property="og:description" content="LLM systems on hardware you already own, and backends that match the accounting to the cent.">
-<meta property="og:image" content="https://hikkian.github.io/img/f-esil.webp">
-<meta name="theme-color" content="#1c1c1c">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231c1c1c'/%3E%3Ctext x='16' y='22' font-family='Arial' font-weight='700' font-size='16' fill='%238fa68e' text-anchor='middle'%3EAS%3C/text%3E%3C/svg%3E">
+<meta property="og:description" content="I build AI that runs on your own hardware: a 35B coding model on one 12 GB gaming GPU, agent tooling, and ERP backends.">
+<meta property="og:image" content="https://hikkian.github.io/img/barid-panel.webp">
+<meta name="theme-color" content="#111312">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23111312'/%3E%3Ctext x='16' y='22' font-family='Arial' font-weight='700' font-size='15' fill='%237ee0c3' text-anchor='middle'%3EAS%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=TikTok+Sans:wdth,wght@75..150,300..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=TikTok+Sans:wdth,wght@75..150,300..900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"><!-- taste-skill-ignore: mono only for the code in the terminal -->
 <link rel="stylesheet" href="style.css">
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
 
-<header class="hero" id="top">
-  <a class="corner tl" href="#top">Alisher Sharipov</a>
-  <nav class="corner tr" aria-label="Sections">
-    <a href="#projects" data-ru="Проекты">Projects</a>
-    <a href="#work" data-ru="Работа">Work</a>
-    <a href="#contact" data-ru="Контакты">Contact</a>
-    <button class="lang" type="button" id="lang" aria-label="Switch language">RU</button>
-  </nav>
-
-  <div class="strip" id="strip" tabindex="0" aria-label="Frames from my work">
-    <figure class="frame"><img src="img/f-oga-editor.webp" width="922" height="640" alt="Open Go Academy lesson: theory on the left, a Go editor with Run and Check on the right"><figcaption data-ru="Open Go Academy, урок с редактором Go">Open Go Academy, a lesson with a Go editor</figcaption></figure>
-    <figure class="frame"><img src="img/f-barid.webp" width="755" height="640" alt="Barid board: three agents, their current tasks and the order in which tasks can run"><figcaption data-ru="Barid, доска для нескольких ИИ-агентов">Barid, a board for several AI agents</figcaption></figure>
-    <figure class="frame"><img src="img/f-esil.webp" width="731" height="640" alt="Astana at night: the Bayterek tower lit above the Esil district"><figcaption data-ru="Астана, где я живу и работаю">Astana, where I live and work</figcaption></figure>
-    <figure class="frame"><img src="img/f-oga-code.webp" width="807" height="640" alt="A Go program in the Open Go Academy editor"><figcaption data-ru="Код учеников компилируется и запускается в изолированных контейнерах">Student code compiles and runs in isolated containers</figcaption></figure>
-    <figure class="frame"><img src="img/f-oga-skills.webp" width="922" height="640" alt="Open Go Academy skills map"><figcaption data-ru="Карта навыков Open Go Academy">Open Go Academy skills map</figcaption></figure>
-    <figure class="frame"><img src="img/f-barid-steps.webp" width="1493" height="640" alt="Barid: tasks grouped into steps that can run at the same time"><figcaption data-ru="Barid сам считает, что можно запускать параллельно">Barid works out what can run in parallel</figcaption></figure>
-    <figure class="frame"><img src="img/f-moon.webp" width="800" height="640" alt="A red moon over the lights of Astana during a lunar eclipse"><figcaption data-ru="Лунное затмение над Астаной">Lunar eclipse over Astana</figcaption></figure>
-    <figure class="frame"><img src="img/f-oga-workspace.webp" width="922" height="640" alt="Open Go Academy project workspace"><figcaption data-ru="Рабочее место проекта в Open Go Academy">A project workspace in Open Go Academy</figcaption></figure>
-  </div>
-
-  <div class="corner bl">
-    <h1 data-ru="Алишер Шарипов">Alisher Sharipov</h1>
-    <p data-ru="AI и backend-разработчик в Астане. Делаю LLM-системы, которые работают на вашем железе, и бэкенды, которые сходятся с бухгалтерией до копейки.">AI and backend engineer in Astana. I build LLM systems that run on hardware you already own, and backends that agree with the accounting to the cent.</p>
-  </div>
-  <div class="corner br">
-    <a class="button" href="cv/Alisher_Sharipov_AI_Backend_EN.pdf" id="cv-main" data-ru-href="cv/Alisher_Sharipov_AI_Backend_RU.pdf" data-ru="Скачать резюме">Download CV</a>
-    <a class="quiet" href="cv/Alisher_Sharipov_AI_Backend_RU.pdf" id="cv-alt" data-ru-href="cv/Alisher_Sharipov_AI_Backend_EN.pdf" data-ru="CV in English">Резюме на русском</a>
+<header class="top">
+  <div class="wrap top-in">
+    <a class="name" href="#hero">Alisher Sharipov</a>
+    <nav aria-label="Sections">
+      <a href="#projects" data-ru="Проекты">Projects</a>
+      <a href="#work" data-ru="Опыт">Experience</a>
+      <a href="#contact" data-ru="Контакты">Contact</a>
+      <button class="lang" type="button" id="lang" aria-label="Switch language">RU</button>
+    </nav>
   </div>
 </header>
 
 <main>
 
-<section class="showcase" id="speed" aria-labelledby="speed-h">
-  <div class="showcase-text">
-    <h2 id="speed-h"><span data-ru="35B-модель на одной карте:">A 35B model on one card,</span> <span id="speed-word" data-ru-short="короткий контекст" data-ru-long="длинный контекст">short context</span></h2>
-    <p data-ru="Shura запускает Tiel-Coder-35B на одной игровой видеокарте 12 ГБ, пока на компьютере открыты браузер, IDE и мессенджеры. Двигайте ползунок: это измеренная скорость при разной заполненности контекста.">Shura runs Tiel-Coder-35B on one 12 GB gaming card while the browser, the IDE and messengers stay open. Move the slider: these are measured speeds at each filled context.</p>
-    <div class="reply">
-      <p class="reply-label" data-ru="Так ответ появляется на выбранной скорости:">This is how an answer appears at that speed:</p>
-      <p class="stream" id="stream" aria-live="off"></p>
+<section class="hero wrap" id="hero" aria-labelledby="hero-h">
+  <h1 id="hero-h" data-ru="ИИ, который работает на вашем железе">AI that runs on your own hardware</h1>
+  <div class="hero-text">
+    <p class="lead" data-ru="Алишер Шарипов, AI и backend-разработчик (Python, Go) в Астане. Запустил 35B-модель для программирования на одной игровой видеокарте 12 ГБ и сделал ERP-модуль зарплаты, который сходится с 1С до копейки.">Alisher Sharipov, AI and backend engineer (Python, Go) in Astana. I run a 35B coding model on one 12 GB gaming GPU, and I built an ERP payroll module that matches 1C to the cent.</p>
+    <div class="actions">
+      <a class="button" id="cv-main" href="cv/Alisher_Sharipov_AI_Backend_EN.pdf" data-ru-href="cv/Alisher_Sharipov_AI_Backend_RU.pdf" data-ru="Скачать резюме (PDF)">Download CV (PDF)</a>
+      <a class="button ghost" href="https://github.com/hikkian">GitHub</a>
+      <a class="quiet" id="cv-alt" href="cv/Alisher_Sharipov_AI_Backend_RU.pdf" data-ru-href="cv/Alisher_Sharipov_AI_Backend_EN.pdf" data-ru="CV in English">Резюме на русском</a>
     </div>
   </div>
-  <div class="dial" data-ui>
-    <label for="ctx" class="dial-label"><span data-ru="Заполнено контекста">Context filled</span> <output id="ctx-out">32k</output></label>
-    <input type="range" id="ctx" min="0" max="5" step="1" value="2" aria-valuetext="32k tokens">
-    <div class="dial-value"><span id="tps">50.8</span><span class="unit" data-ru="ток/с">tok/s</span></div>
-    <p class="answer-time" id="answer-time"></p>
-  </div>
-  <p class="source"><span data-ru="RTX 4070 SUPER 12 ГБ, Ryzen 5 5600, медиана 3–5 запусков.">RTX 4070 SUPER 12 GB, Ryzen 5 5600, median of 3–5 runs.</span> <a href="https://github.com/hikkian/shura#results" data-ru="Данные">Data</a></p>
+
+  <figure class="term" data-ui aria-label="Shura answering locally at measured speed">
+    <div class="term-bar">
+      <span class="term-title">shura</span>
+      <span class="term-state"><i class="live"></i><span data-ru="локально, без интернета">local, offline</span></span>
+    </div>
+    <div class="term-body">
+      <p class="t-user"><span class="t-mark">›</span> <span data-ru="Почему тест зарплаты падает на сентябре?">Why does the payroll test fail for September?</span></p>
+      <pre class="t-out" id="stream" aria-live="off"></pre>
+    </div>
+    <div class="term-status">
+      <span>Tiel-Coder-35B · RTX 4070 SUPER 12 GB</span>
+      <span><b id="tps">50.8</b> tok/s</span>
+    </div>
+    <div class="term-ctx">
+      <span class="ctx-label" data-ru="Заполнено контекста">Context filled</span>
+      <div class="chips" id="chips" role="radiogroup" aria-label="Context filled">
+        <button type="button" role="radio" data-i="0">4k</button>
+        <button type="button" role="radio" data-i="1">16k</button>
+        <button type="button" role="radio" data-i="2">32k</button>
+        <button type="button" role="radio" data-i="3">64k</button>
+        <button type="button" role="radio" data-i="4">128k</button>
+        <button type="button" role="radio" data-i="5">187k</button>
+      </div>
+    </div>
+    <figcaption id="term-note"></figcaption>
+  </figure>
 </section>
 
-<section class="projects" id="projects" aria-labelledby="projects-h">
-  <div class="rail">
-    <h2 id="projects-h" data-ru="Проекты">Projects</h2>
-    <p data-ru="Открытый код, всё на GitHub.">Open source, all on GitHub.</p>
-  </div>
-  <div class="strips">
-    <article class="project">
-      <div class="row" tabindex="0" aria-label="Shura">
-        <img src="img/shura-how.svg" width="491" height="170" loading="lazy" alt="Shura architecture: agent, gateway, llama-server">
-        <img src="img/shura-arch.svg" width="412" height="170" loading="lazy" alt="Shura components overview">
-      </div>
-      <div class="meta"><a href="https://github.com/hikkian/shura">Shura</a><span data-ru="локальная LLM-платформа">local LLM platform</span><span>2026</span></div>
-      <p data-ru="OpenAI-совместимый шлюз на Python: загружает модель по запросу, сохраняет длинные сессии (100 тыс. токенов восстанавливаются за 0,5 с вместо 156 с), переживает сбои. Свой форк llama.cpp на C++ с управлением видеопамятью и кешем экспертов, чтобы рабочий стол не тормозил. Система оценки агентов на 111 задачах. 580+ тестов, CI на трёх ОС.">An OpenAI-compatible gateway in Python: loads the model on demand, saves long sessions (100k tokens restored in 0.5 s instead of 156 s) and survives crashes. My own llama.cpp fork in C++ with a VRAM governor and an expert cache, so the desktop never stutters. An evaluation harness of 111 agentic coding tasks. 580+ tests, CI on three OSes.</p>
-    </article>
-    <article class="project">
-      <div class="row" tabindex="0" aria-label="Barid">
-        <img src="img/f-barid.webp" width="224" height="190" loading="lazy" alt="Barid board with agents and their tasks">
-        <img src="img/f-barid-steps.webp" width="443" height="190" loading="lazy" alt="Barid steps that can run at the same time">
-      </div>
-      <div class="meta"><a href="https://github.com/hikkian/barid">Barid</a><span data-ru="доска для ИИ-агентов">board for AI agents</span><span>2026</span></div>
-      <p data-ru="Очередь задач для нескольких параллельных сессий ИИ-агентов: зависимости, аренда общих ресурсов вроде видеокарты, проверка результата человеком, автономный исполнитель с лимитами времени и веб-панель. Без зависимостей, MIT.">A task queue for several AI agent sessions running in parallel: dependencies, leases on shared resources like the GPU, human review gates, an unattended worker with timeboxes and a web dashboard. Zero dependencies, MIT.</p>
-    </article>
-    <article class="project">
-      <div class="row" tabindex="0" aria-label="Open Go Academy">
-        <img src="img/f-oga-editor.webp" width="274" height="190" loading="lazy" alt="Open Go Academy lesson with a Go editor">
-        <img src="img/f-oga-code.webp" width="240" height="190" loading="lazy" alt="A Go program in the editor">
-        <img src="img/f-oga-workspace.webp" width="274" height="190" loading="lazy" alt="Project workspace">
-        <img src="img/f-oga-skills.webp" width="274" height="190" loading="lazy" alt="Skills map">
-      </div>
-      <div class="meta"><a href="https://github.com/hikkian/open-go-academy">Open Go Academy</a><span data-ru="платформа для изучения Go">a school for Go</span><span>2026</span></div>
-      <p data-ru="128 глав, пять проектов и экзамены. Backend на Go компилирует и запускает код учеников в изолированных Docker-контейнерах и проверяет его тестами. Фронтенд на React, ИИ-наставник на локальной модели или в облаке.">128 chapters, five projects and exams. A Go backend compiles and runs student code in isolated Docker containers and grades it with tests. React frontend, an optional LLM tutor on a local model or in the cloud.</p>
-    </article>
-  </div>
-</section>
-
-<section class="work" id="work" aria-labelledby="work-h">
-  <h2 id="work-h" data-ru="Работа и навыки">Work and skills</h2>
-  <h3 class="group" data-ru="ABS LAB, Астана · с февраля 2026">ABS LAB, Astana · since February 2026</h3>
-  <ul class="lineup">
-    <li><span data-ru="Модуль кадров и зарплаты ERP для группы дорожно-строительных компаний">HR and payroll module of an ERP for a road-construction group</span><span>Python, Frappe, SQL</span><span data-ru="в эксплуатации с сентября">live since September</span></li>
-    <li><span data-ru="Коннектор к 1С:ЗУП и синхронизация семи баз 1С">Connector to 1C:ZUP and sync of seven 1C databases</span><span>OData</span><span data-ru="сходится до копейки">matches to the cent</span></li>
-    <li><span data-ru="RAG-ассистент в чате сайта">RAG assistant in the website chat</span><span>Qdrant, Gemini API</span><span data-ru="в продакшене">in production</span></li>
-    <li><span data-ru="Заявки из форм и ИИ-чата в CRM и почту">Leads from forms and the AI chat into CRM and email</span><span>Bitrix24</span><span data-ru="автоматически">automatic</span></li>
-    <li><span data-ru="Многоязычный сайт со входом через Microsoft 365">Multilingual site with Microsoft 365 sign-in</span><span>React, Strapi</span><span>PostgreSQL</span></li>
-  </ul>
-  <h3 class="group" data-ru="Навыки">Skills</h3>
-  <ul class="lineup">
-    <li><span>Backend</span><span>Python, Go, FastAPI</span><span>REST, OpenAPI, SQL</span></li>
-    <li><span>AI / LLM</span><span data-ru="RAG, агенты, MCP">RAG, agents, MCP</span><span data-ru="локальные модели, llama.cpp">local models, llama.cpp</span></li>
-    <li><span data-ru="Интеграции">Integrations</span><span>1C, Bitrix24</span><span>Docker, Nginx, CI/CD</span></li>
-    <li><span data-ru="Фронтенд">Frontend</span><span>React</span><span>TypeScript</span></li>
-  </ul>
-  <h3 class="group" data-ru="Образование">Education</h3>
-  <ul class="lineup">
-    <li><span>Astana IT University</span><span data-ru="бакалавр, Computer Science">BSc, Computer Science</span><span>2023–2026</span></li>
-    <li><span data-ru="Международная Евразийская олимпиада по информатике">International Eurasian Olympiad in Informatics</span><span data-ru="бронза">bronze</span><span></span></li>
-    <li><span data-ru="Республиканская олимпиада по информатике">Kazakhstan National Olympiad in Informatics</span><span data-ru="бронза">bronze</span><span></span></li>
+<section class="numbers wrap" aria-labelledby="numbers-h">
+  <h2 id="numbers-h" class="visually-hidden" data-ru="В цифрах">In numbers</h2>
+  <ul>
+    <li><b>35B</b><span data-ru="модель для кода на одной видеокарте 12 ГБ, контекст до 187 тыс. токенов">coding model on one 12 GB GPU, context up to 187k tokens</span></li>
+    <li><b>+47%</b><span data-ru="скорости на 187k против обычного llama.cpp: 26,1 → 38,3 ток/с">speed at 187k over stock llama.cpp: 26.1 → 38.3 tok/s</span></li>
+    <li><b data-ru="0,5 с">0.5 s</b><span data-ru="восстановить сессию на 100 тыс. токенов (было 156 с)">to restore a 100k-token session (was 156 s)</span></li>
+    <li><b data-ru="7 баз">7 DBs</b><span data-ru="1С синхронизируются с ERP, расчёт сходится до копейки">of 1C synced with the ERP, payroll matches to the cent</span></li>
   </ul>
 </section>
 
-<section class="contact" id="contact" aria-labelledby="contact-h">
-  <img class="contact-photo" src="img/contact-esil.webp" width="1920" height="1440" loading="lazy" alt="Astana at night, the Bayterek tower and the Esil district">
-  <div class="card">
-    <h2 id="contact-h" data-ru="Напишите мне">Write to me</h2>
-    <p data-ru="Астана, Казахстан. Открыт к удалённой работе.">Astana, Kazakhstan. Open to remote work.</p>
-    <dl>
-      <div><dt>Email</dt><dd><a href="mailto:alishar2005@gmail.com">alishar2005@gmail.com</a></dd></div>
-      <div><dt data-ru="Телефон">Phone</dt><dd><a href="tel:+77711665117">+7 771 166 5117</a></dd></div>
-      <div><dt>GitHub</dt><dd><a href="https://github.com/hikkian">hikkian</a></dd></div>
-      <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/hikkian/">hikkian</a></dd></div>
-    </dl>
-    <a class="button wide" href="mailto:alishar2005@gmail.com?subject=Hello%20Alisher" data-ru="Написать письмо">Send an email</a>
+<section class="projects wrap" id="projects" aria-labelledby="projects-h">
+  <h2 id="projects-h" class="section-h" data-ru="Проекты">Projects</h2>
+
+  <article class="case">
+    <div class="case-head">
+      <h3>Shura</h3>
+      <p class="case-tag" data-ru="Локальный ИИ-агент для программирования">Local AI coding agent</p>
+      <a class="case-link" href="https://github.com/hikkian/shura">github.com/hikkian/shura</a>
+    </div>
+    <div class="shot light"><img src="img/shura-how.svg" width="1040" height="360" loading="lazy" alt="How Shura works: the coding agent talks to the gateway, the gateway runs llama-server, the model is split between GPU and RAM"></div>
+    <div class="case-cols">
+      <div><h4 data-ru="Задача">Problem</h4><p data-ru="Сильные модели для кода не помещаются в 12 ГБ видеопамяти, а если помещаются, то рабочий стол начинает тормозить.">Strong coding models do not fit in 12 GB of VRAM, and when they do, the desktop starts to stutter.</p></div>
+      <div><h4 data-ru="Что сделал">What I built</h4><p data-ru="OpenAI-совместимый шлюз на Python: грузит модель по запросу, переживает сбои, сохраняет длинные сессии. Свой форк llama.cpp на C++ с кешем экспертов и контролем видеопамяти. Набор из 111 агентных задач для оценки.">An OpenAI-compatible gateway in Python that loads the model on demand, survives crashes and saves long sessions. My own llama.cpp fork in C++ with an expert cache and a VRAM governor. A harness of 111 agentic coding tasks.</p></div>
+      <div><h4 data-ru="Результат">Result</h4><p data-ru="38–39 ток/с на 187k контекста при открытом браузере и IDE. Сессия на 100k токенов восстанавливается за 0,5 с вместо 156 с. 580+ тестов, CI на Linux, macOS и Windows.">38–39 tok/s at 187k context with the browser and IDE open. A 100k-token session restores in 0.5 s instead of 156 s. 580+ tests, CI on Linux, macOS and Windows.</p></div>
+    </div>
+    <p class="stack">Python · C++ · llama.cpp · CUDA / ROCm · MCP · Docker</p>
+  </article>
+
+  <article class="case">
+    <div class="case-head">
+      <h3>Barid</h3>
+      <p class="case-tag" data-ru="Доска задач для нескольких ИИ-агентов">Task board for several AI agents</p>
+      <a class="case-link" href="https://github.com/hikkian/barid">github.com/hikkian/barid</a>
+    </div>
+    <div class="shot"><img src="img/barid-panel.webp" width="1120" height="760" loading="lazy" alt="Barid panel: three agents with their current tasks, a proposed task waiting for approval and the order in which tasks can run"></div>
+    <div class="case-cols">
+      <div><h4 data-ru="Задача">Problem</h4><p data-ru="Когда несколько агентов (Codex, Claude Code, локальная модель) работают параллельно, они берут одну и ту же задачу и одновременно занимают видеокарту.">When several agents (Codex, Claude Code, a local model) work in parallel, they pick the same task and fight over the GPU.</p></div>
+      <div><h4 data-ru="Что сделал">What I built</h4><p data-ru="Очередь с зависимостями и арендой общих ресурсов, проверка результата человеком, автономный исполнитель с лимитами времени и веб-панель, которая сама считает, что можно запускать вместе.">A queue with dependencies and leases on shared resources, human review gates, an unattended worker with timeboxes, and a web panel that works out what can run together.</p></div>
+      <div><h4 data-ru="Результат">Result</h4><p data-ru="Каждый день веду на ней свою работу с несколькими агентами. Без внешних зависимостей, лицензия MIT.">I run my own multi-agent work on it every day. Zero dependencies, MIT licence.</p></div>
+    </div>
+    <p class="stack">Python · HTTP API · JavaScript · MCP</p>
+  </article>
+
+  <article class="case">
+    <div class="case-head">
+      <h3>Open Go Academy</h3>
+      <p class="case-tag" data-ru="Платформа для изучения Go">A school for Go</p>
+      <a class="case-link" href="https://github.com/hikkian/open-go-academy">github.com/hikkian/open-go-academy</a>
+    </div>
+    <div class="shot-grid">
+      <div class="shot big"><img src="img/oga-editor.webp" width="1440" height="1000" loading="lazy" alt="Open Go Academy lesson: theory on the left, a Go editor with Run and Check buttons on the right"></div>
+      <div class="shot"><img src="img/oga-workspace.webp" width="1440" height="1036" loading="lazy" alt="Project workspace with tasks and an editor"></div>
+      <div class="shot"><img src="img/oga-skills.webp" width="1440" height="1036" loading="lazy" alt="Skills map with progress by topic"></div>
+    </div>
+    <div class="case-cols">
+      <div><h4 data-ru="Задача">Problem</h4><p data-ru="Учить Go по статьям долго: нет места, где можно сразу запустить код и получить проверку.">Learning Go from articles is slow: there is no place to run code right away and get it checked.</p></div>
+      <div><h4 data-ru="Что сделал">What I built</h4><p data-ru="Backend на Go компилирует и запускает код учеников в изолированных Docker-контейнерах и проверяет его тестами. Фронтенд на React, ИИ-наставник на локальной модели или в облаке.">A Go backend compiles and runs student code in isolated Docker containers and grades it with tests. React frontend, an optional AI tutor on a local model or in the cloud.</p></div>
+      <div><h4 data-ru="Результат">Result</h4><p data-ru="128 глав, пять проектов и экзамены, карта навыков с прогрессом.">128 chapters, five projects and exams, a skills map with progress.</p></div>
+    </div>
+    <p class="stack">Go · React · TypeScript · Docker · PostgreSQL</p>
+  </article>
+</section>
+
+<section class="work wrap" id="work" aria-labelledby="work-h">
+  <h2 id="work-h" class="section-h" data-ru="Опыт">Experience</h2>
+  <div class="job">
+    <div class="job-side">
+      <h3>ABS LAB</h3>
+      <p data-ru="Астана · с февраля 2026">Astana · since February 2026</p>
+      <p data-ru="AI / backend-разработчик">AI / backend engineer</p>
+    </div>
+    <ul class="job-list">
+      <li><b data-ru="Модуль кадров и зарплаты ERP">HR and payroll module of an ERP</b><span data-ru="для группы дорожно-строительных компаний, в работе с сентября. Python, Frappe, SQL.">for a road-construction group, live since September. Python, Frappe, SQL.</span></li>
+      <li><b data-ru="Коннектор к 1С:ЗУП">Connector to 1C:ZUP</b><span data-ru="синхронизация семи баз 1С через OData, расчёт сходится до копейки.">syncs seven 1C databases over OData, payroll matches to the cent.</span></li>
+      <li><b data-ru="RAG-ассистент">RAG assistant</b><span data-ru="в чате сайта компании, в продакшене. Qdrant, Gemini API.">in the company website chat, in production. Qdrant, Gemini API.</span></li>
+      <li><b data-ru="Заявки в CRM">Leads into CRM</b><span data-ru="из форм и ИИ-чата автоматически уходят в Bitrix24 и на почту.">from forms and the AI chat go to Bitrix24 and email automatically.</span></li>
+      <li><b data-ru="Многоязычный сайт">Multilingual site</b><span data-ru="со входом через Microsoft 365. React, Strapi, PostgreSQL.">with Microsoft 365 sign-in. React, Strapi, PostgreSQL.</span></li>
+    </ul>
   </div>
+
+  <div class="facts">
+    <div>
+      <h3 data-ru="Навыки">Skills</h3>
+      <dl>
+        <div><dt>Backend</dt><dd>Python, Go, FastAPI, REST, SQL</dd></div>
+        <div><dt>AI / LLM</dt><dd data-ru="RAG, агенты, MCP, llama.cpp, локальные модели">RAG, agents, MCP, llama.cpp, local models</dd></div>
+        <div><dt data-ru="Интеграции">Integrations</dt><dd>1C, Bitrix24, OData</dd></div>
+        <div><dt data-ru="Инфраструктура">Infrastructure</dt><dd>Docker, Nginx, CI/CD, Linux</dd></div>
+        <div><dt data-ru="Фронтенд">Frontend</dt><dd>React, TypeScript</dd></div>
+      </dl>
+    </div>
+    <div>
+      <h3 data-ru="Образование">Education</h3>
+      <dl>
+        <div><dt>Astana IT University</dt><dd data-ru="бакалавр Computer Science, 2023–2026">BSc Computer Science, 2023–2026</dd></div>
+        <div><dt data-ru="Евразийская олимпиада по информатике">Eurasian Olympiad in Informatics</dt><dd data-ru="бронза">bronze</dd></div>
+        <div><dt data-ru="Республиканская олимпиада по информатике">National Olympiad in Informatics</dt><dd data-ru="бронза">bronze</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section class="contact wrap" id="contact" aria-labelledby="contact-h">
+  <div class="contact-main">
+    <h2 id="contact-h" class="section-h" data-ru="Напишите мне">Get in touch</h2>
+    <p class="lead" data-ru="Открыт к удалённой работе: AI, LLM-системы и backend на Python или Go.">Open to remote work: AI, LLM systems and backend in Python or Go.</p>
+    <a class="mail" href="mailto:alishar2005@gmail.com">alishar2005@gmail.com</a>
+  </div>
+  <ul class="contact-list">
+    <li><a href="tel:+77711665117">+7 771 166 5117</a></li>
+    <li><a href="https://github.com/hikkian">GitHub</a></li>
+    <li><a href="https://www.linkedin.com/in/hikkian/">LinkedIn</a></li>
+    <li><a href="cv/Alisher_Sharipov_AI_Backend_EN.pdf" data-ru-href="cv/Alisher_Sharipov_AI_Backend_RU.pdf" data-ru="Резюме (PDF)">CV (PDF)</a></li>
+  </ul>
 </section>
 
 </main>
 
-<footer class="foot">
-  <span data-ru="AI и backend-разработчик">AI and backend engineer</span>
-  <span class="links"><a href="https://github.com/hikkian">GitHub</a><a href="https://www.linkedin.com/in/hikkian/">LinkedIn</a><a href="cv/Alisher_Sharipov_AI_Backend_EN.pdf">CV</a></span>
-  <span class="credits">2026 · <span data-ru="Фото:">Photos:</span> <a href="https://commons.wikimedia.org/wiki/File:Night_at_Esil_District,_Astana_(P1190721).jpg">Matti Blume</a>, CC BY-SA 4.0; <a href="https://commons.wikimedia.org/wiki/File:%D0%9A%D1%80%D0%BE%D0%B2%D0%B0%D0%B2%D0%BE%D0%B5_%D0%BB%D1%83%D0%BD%D0%BD%D0%BE%D0%B5_%D0%B7%D0%B0%D1%82%D0%BC%D0%B5%D0%BD%D0%B8%D0%B5_%D0%BD%D0%B0%D0%B4_%D0%BF%D0%B0%D0%BD%D0%BE%D1%80%D0%B0%D0%BC%D0%BE%D0%B9_%D0%90%D1%81%D1%82%D0%B0%D0%BD%D1%8B.jpg">Mirat Serik</a>, CC BY 4.0</span>
+<footer class="foot wrap">
+  <span>© 2026 Alisher Sharipov</span>
+  <span data-ru="Без фреймворков, меньше 400 КБ">No frameworks, under 400 KB</span>
 </footer>
 
 <script src="main.js" defer></script>
