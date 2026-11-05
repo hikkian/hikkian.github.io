@@ -100,6 +100,70 @@
     document.querySelectorAll('[data-rise]').forEach(el => io.observe(el));
   }
 
+  /* Scroll scenes: one rAF loop sets --p (0..1) on [data-scroll] elements; CSS does the rest. */
+  const bar = document.getElementById('progress');
+  const flow = document.getElementById('flow');
+  const fill = flow.querySelector('.flow-line');
+  const nodes = [...flow.querySelectorAll('.flow-nodes li')];
+  const tokens = document.getElementById('flow-tokens');
+  const scrolled = [...document.querySelectorAll('[data-scroll]')];
+  const clamp = v => v < 0 ? 0 : v > 1 ? 1 : v;
+  let queued = false;
+  const frame = () => {
+    queued = false;
+    const vh = innerHeight;
+    const doc = document.documentElement;
+    bar.style.transform = `scaleX(${clamp(scrollY / (doc.scrollHeight - vh))})`;
+    if (reduce) return;
+    for (const el of scrolled) {
+      const r = el.getBoundingClientRect();
+      if (r.bottom < -vh || r.top > vh * 2) continue;
+      const mode = el.dataset.scroll;
+      const p = mode === 'exit' ? clamp(-r.top / (r.height * 0.9))
+        : mode === 'through' ? clamp(-r.top / (r.height - vh))
+        : clamp((vh - r.top) / (vh * 0.75));
+      el.style.setProperty('--p', p.toFixed(4));
+      if (el === flow) {
+        nodes.forEach(n => n.classList.toggle('on', p >= +n.dataset.at));
+        const t = clamp((p - 0.77) / 0.2);
+        tokens.textContent = Math.round(t * 1000).toLocaleString(lang === 'ru' ? 'ru' : 'en');
+      }
+    }
+  };
+  const measure = () => {
+    flow.style.setProperty('--w', fill.offsetWidth + 'px');
+    flow.style.setProperty('--h', fill.offsetHeight + 'px');
+    frame();
+  };
+  addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(frame); } }, { passive: true });
+  addEventListener('resize', measure, { passive: true });
+  measure();
+  if (reduce) { nodes.forEach(n => n.classList.add('on')); tokens.textContent = '1000'; }
+
+  /* Numbers count up once when they come into view. */
+  if (!reduce && 'IntersectionObserver' in window) {
+    const nums = [...document.querySelectorAll('.numbers b')];
+    const count = el => {
+      const final = el.textContent;
+      const m = final.match(/^(\D*)(\d+(?:[.,]\d+)?)(.*)$/);
+      if (!m) return;
+      const target = parseFloat(m[2].replace(',', '.'));
+      const dec = (m[2].split(/[.,]/)[1] || '').length;
+      const sep = m[2].includes(',') ? ',' : '.';
+      const t0 = performance.now();
+      const step = t => {
+        const k = Math.min(1, (t - t0) / 1100), e = 1 - Math.pow(1 - k, 3);
+        el.textContent = k < 1 ? m[1] + (target * e).toFixed(dec).replace('.', sep) + m[3] : (lang === 'ru' && el.dataset.ru ? el.dataset.ru : el.dataset.en || final);
+        if (k < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    };
+    const io2 = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { count(e.target); io2.unobserve(e.target); }
+    }), { threshold: 0.6 });
+    nums.forEach(n => io2.observe(n));
+  }
+
   let saved = null;
   try { saved = localStorage.getItem('lang'); } catch (_) {}
   setLang(saved || ((navigator.language || '').toLowerCase().startsWith('ru') ? 'ru' : 'en'));
