@@ -103,10 +103,11 @@
   const word = document.getElementById('speed-word');
   const field = document.querySelector('.showcase');
   const stream = document.getElementById('stream');
-  const text = {
-    en: 'def reconcile(payroll, ledger):\n    # every row must match to the cent\n    for row in payroll:\n        if row.total != ledger[row.id]:\n            raise MismatchError(row.id)\n    return True',
-    ru: 'Сверяю расчёт зарплаты с 1С построчно: если сумма расходится хоть на копейку, модуль показывает строку и причину, а отчёт не уходит, пока всё не сойдётся.'
+  const answer = {
+    en: 'def check(payroll, ledger):\n    # every row must match the books to the cent\n    bad = [r.id for r in payroll if r.total != ledger[r.id]]\n    if bad:\n        raise MismatchError(bad)\n    return True',
+    ru: 'def check(payroll, ledger):\n    # каждая строка должна сойтись с 1С до копейки\n    bad = [r.id for r in payroll if r.total != ledger[r.id]]\n    if bad:\n        raise MismatchError(bad)\n    return True'
   };
+  const answerTime = document.getElementById('answer-time');
   const fmt = n => n.toFixed(1).replace('.', lang === 'ru' ? ',' : '.');
   let rate = 50.8;
   function updateDial() {
@@ -120,24 +121,34 @@
     word.textContent = lang === 'ru'
       ? (long ? word.dataset.ruLong : word.dataset.ruShort)
       : (long ? 'long context' : 'short context');
+    const secs = (1000 / d.tps).toFixed(0);
+    answerTime.textContent = lang === 'ru'
+      ? `Страница кода (~1000 токенов) за ${secs} с`
+      : `A page of code (~1000 tokens) in ${secs} s`;
   }
   range.addEventListener('input', updateDial);
 
-  // About 1.3 tokens per word; one chunk per token-equivalent at the measured rate.
-  let pos = 0, timer = 0;
-  const tick = () => {
-    const src = text[lang];
-    pos += 4;
-    if (pos > src.length + 60) pos = 0;
-    stream.textContent = src.slice(0, Math.min(pos, src.length));
-    timer = setTimeout(tick, 1000 / rate);
+  // Plays once per change of the slider: about 3.5 characters per token of code.
+  let raf = 0, seen = false;
+  const play = () => {
+    cancelAnimationFrame(raf);
+    const src = answer[lang];
+    if (reduce) { stream.textContent = src; return; }
+    const t0 = performance.now();
+    const step = t => {
+      const n = Math.min(src.length, Math.floor((t - t0) / 1000 * rate * 3.5));
+      stream.textContent = src.slice(0, n);
+      stream.classList.toggle('done', n >= src.length);
+      if (n < src.length) raf = requestAnimationFrame(step);
+    };
+    raf = requestAnimationFrame(step);
   };
-  const io0 = new IntersectionObserver(es => es.forEach(e => {
-    clearTimeout(timer);
-    if (e.isIntersecting && !reduce) tick();
-    else if (reduce) stream.textContent = text[lang];
-  }));
-  io0.observe(field);
+  range.addEventListener('change', play);
+  range.addEventListener('input', () => { if (seen) play(); });
+  btn.addEventListener('click', () => { if (seen) play(); });
+  new IntersectionObserver((es, o) => es.forEach(e => {
+    if (e.isIntersecting) { seen = true; play(); o.disconnect(); }
+  }), { threshold: 0.4 }).observe(field);
   stream.style.whiteSpace = 'pre-wrap';
 
   /* Entrances: heading, then text, then pictures, once per section. */

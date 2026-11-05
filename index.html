@@ -54,12 +54,16 @@
   <div class="showcase-text">
     <h2 id="speed-h"><span data-ru="35B-модель на одной карте:">A 35B model on one card,</span> <span id="speed-word" data-ru-short="короткий контекст" data-ru-long="длинный контекст">short context</span></h2>
     <p data-ru="Shura запускает Tiel-Coder-35B на одной игровой видеокарте 12 ГБ, пока на компьютере открыты браузер, IDE и мессенджеры. Двигайте ползунок: это измеренная скорость при разной заполненности контекста.">Shura runs Tiel-Coder-35B on one 12 GB gaming card while the browser, the IDE and messengers stay open. Move the slider: these are measured speeds at each filled context.</p>
-    <p class="stream" id="stream" aria-live="off"></p>
+    <div class="reply">
+      <p class="reply-label" data-ru="Так ответ появляется на выбранной скорости:">This is how an answer appears at that speed:</p>
+      <p class="stream" id="stream" aria-live="off"></p>
+    </div>
   </div>
   <div class="dial" data-ui>
     <label for="ctx" class="dial-label"><span data-ru="Заполнено контекста">Context filled</span> <output id="ctx-out">32k</output></label>
     <input type="range" id="ctx" min="0" max="5" step="1" value="2" aria-valuetext="32k tokens">
     <div class="dial-value"><span id="tps">50.8</span><span class="unit" data-ru="ток/с">tok/s</span></div>
+    <p class="answer-time" id="answer-time"></p>
   </div>
   <p class="source"><span data-ru="RTX 4070 SUPER 12 ГБ, Ryzen 5 5600, медиана 3–5 запусков.">RTX 4070 SUPER 12 GB, Ryzen 5 5600, median of 3–5 runs.</span> <a href="https://github.com/hikkian/shura#results" data-ru="Данные">Data</a></p>
 </section>

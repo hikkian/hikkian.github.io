@@ -129,8 +129,12 @@ p { margin: 0; }
 .showcase h2 { font-size: clamp(1.75rem, 1rem + 2.4vw, 2.5rem); font-weight: 600; letter-spacing: -0.015em; max-width: 22ch; }
 #speed-word { font-weight: 600; }
 .showcase p { max-width: 44ch; }
+.reply { display: grid; gap: 10px; }
+.reply-label { font-size: var(--step-small); font-weight: 600; }
+.answer-time { font-size: var(--step-lead); font-weight: 500; }
+.stream.done::after { animation: none; opacity: 0; }
 .stream {
-  font-size: var(--step-body); line-height: 1.5; min-height: 7.5em; max-width: 40ch;
+  font-size: var(--step-body); line-height: 1.5; min-height: 9em; max-width: 52ch; background: rgba(28,28,28,.08); padding: 16px 18px; font-size: var(--step-small);
   color: var(--field-1-ink);
 }
 .stream::after { content: ""; display: inline-block; width: .5em; height: 1em; margin-left: 2px; vertical-align: -0.15em; background: currentColor; animation: blink 1s steps(1) infinite; }
