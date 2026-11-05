@@ -10,9 +10,9 @@
   let lang = 'en';
 
   /* The live thing: Shura's measured decode speed by filled context, replayed at that speed. */
+  // FINAL2, 2026-10-23: RX 7800 XT 16 GB, 1.5 GiB VRAM reserve for the desktop, 256-token decode after prefill.
   const data = [
-    { k: '4k', tps: 53.9 }, { k: '16k', tps: 53.2 }, { k: '32k', tps: 50.8 },
-    { k: '64k', tps: 50.5 }, { k: '128k', tps: 42.4 }, { k: '187k', tps: 38.9 }
+    { k: '12k', tps: 72.5, pp: 1738 }, { k: '32k', tps: 58.3, pp: 1570 }, { k: '177k', tps: 34.6, pp: 561 }
   ];
   const answer = {
     en: 'The 1C calendar has 21 working days in September,\nbut payroll.py uses a constant 22.\n\n- days = 22\n+ days = zup.calendar(month).working_days\n\nRan the tests: 48 passed.',
@@ -22,7 +22,7 @@
   const tps = document.getElementById('tps');
   const note = document.getElementById('term-note');
   const out = document.getElementById('stream');
-  let idx = 2, rate = data[idx].tps, raf = 0, seen = false;
+  let idx = 0, rate = data[idx].tps, raf = 0, seen = false;
 
   const esc = s => s.replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
   const render = s => s.split('\n').map(l =>
@@ -53,8 +53,8 @@
     chips.forEach((c, i) => { c.setAttribute('aria-checked', i === idx); c.tabIndex = i === idx ? 0 : -1; });
     const secs = Math.round(1000 / d.tps);
     note.textContent = lang === 'ru'
-      ? `Повтор с измеренной скоростью при ${d.k} контекста. Страница кода (~1000 токенов) выходит за ${secs} с.`
-      : `Replayed at the measured speed with ${d.k} of context. A page of code (~1000 tokens) takes ${secs} s.`;
+      ? `Повтор с измеренной скоростью при ${d.k} контекста: промпт читается со скоростью ${d.pp} ток/с, страница кода (~1000 токенов) пишется за ${secs} с.`
+      : `Replayed at the measured speed with ${d.k} of context: the prompt is read at ${d.pp.toLocaleString('en')} tok/s, a page of code (~1000 tokens) is written in ${secs} s.`;
   };
   const choose = i => { idx = Math.max(0, Math.min(data.length - 1, i)); updateDial(); if (seen) play(); };
   chips.forEach((c, i) => c.addEventListener('click', () => choose(i)));

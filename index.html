@@ -6,7 +6,7 @@
 <title>Alisher Sharipov · AI and backend engineer</title>
 <meta name="description" content="Alisher Sharipov, AI and backend engineer (Python, Go) in Astana. Local LLM systems on consumer hardware and ERP backends that match the accounting to the cent.">
 <meta property="og:title" content="Alisher Sharipov · AI and backend engineer">
-<meta property="og:description" content="I build AI that runs on your own hardware: a 35B coding model on one 12 GB gaming GPU, agent tooling, and ERP backends.">
+<meta property="og:description" content="I build AI that runs on your own hardware: a 35B coding model on one 16 GB gaming GPU, agent tooling, and ERP backends.">
 <meta property="og:image" content="https://hikkian.github.io/img/barid-panel.webp">
 <meta name="theme-color" content="#111312">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23111312'/%3E%3Ctext x='16' y='22' font-family='Arial' font-weight='700' font-size='15' fill='%237ee0c3' text-anchor='middle'%3EAS%3C/text%3E%3C/svg%3E">
@@ -35,7 +35,7 @@
 <section class="hero wrap" id="hero" aria-labelledby="hero-h">
   <h1 id="hero-h" data-ru="ИИ, который работает на вашем железе">AI that runs on your own hardware</h1>
   <div class="hero-text">
-    <p class="lead" data-ru="Алишер Шарипов, AI и backend-разработчик (Python, Go) в Астане. Запустил 35B-модель для программирования на одной игровой видеокарте 12 ГБ и сделал ERP-модуль зарплаты, который сходится с 1С до копейки.">Alisher Sharipov, AI and backend engineer (Python, Go) in Astana. I run a 35B coding model on one 12 GB gaming GPU, and I built an ERP payroll module that matches 1C to the cent.</p>
+    <p class="lead" data-ru="Алишер Шарипов, AI и backend-разработчик (Python, Go) в Астане. Запустил 35B-модель для программирования на одной игровой видеокарте 16 ГБ и сделал ERP-модуль зарплаты, который сходится с 1С до копейки.">Alisher Sharipov, AI and backend engineer (Python, Go) in Astana. I run a 35B coding model on one 16 GB gaming GPU, and I built an ERP payroll module that matches 1C to the cent.</p>
     <div class="actions">
       <a class="button" id="cv-main" href="cv/Alisher_Sharipov_AI_Backend_EN.pdf" data-ru-href="cv/Alisher_Sharipov_AI_Backend_RU.pdf" data-ru="Скачать резюме (PDF)">Download CV (PDF)</a>
       <a class="button ghost" href="https://github.com/hikkian">GitHub</a>
@@ -53,18 +53,15 @@
       <pre class="t-out" id="stream" aria-live="off"></pre>
     </div>
     <div class="term-status">
-      <span>Tiel-Coder-35B · RTX 4070 SUPER 12 GB</span>
-      <span><b id="tps">50.8</b> tok/s</span>
+      <span>Tiel-Coder-35B · RX 7800 XT 16 GB</span>
+      <span><b id="tps">72.5</b> tok/s</span>
     </div>
     <div class="term-ctx">
       <span class="ctx-label" data-ru="Заполнено контекста">Context filled</span>
       <div class="chips" id="chips" role="radiogroup" aria-label="Context filled">
-        <button type="button" role="radio" data-i="0">4k</button>
-        <button type="button" role="radio" data-i="1">16k</button>
-        <button type="button" role="radio" data-i="2">32k</button>
-        <button type="button" role="radio" data-i="3">64k</button>
-        <button type="button" role="radio" data-i="4">128k</button>
-        <button type="button" role="radio" data-i="5">187k</button>
+        <button type="button" role="radio" data-i="0">12k</button>
+        <button type="button" role="radio" data-i="1">32k</button>
+        <button type="button" role="radio" data-i="2">177k</button>
       </div>
     </div>
     <figcaption id="term-note"></figcaption>
@@ -74,9 +71,9 @@
 <section class="numbers wrap" aria-labelledby="numbers-h">
   <h2 id="numbers-h" class="visually-hidden" data-ru="В цифрах">In numbers</h2>
   <ul>
-    <li><b>35B</b><span data-ru="модель для кода на одной видеокарте 12 ГБ, контекст до 187 тыс. токенов">coding model on one 12 GB GPU, context up to 187k tokens</span></li>
-    <li><b>+47%</b><span data-ru="скорости на 187k против обычного llama.cpp: 26,1 → 38,3 ток/с">speed at 187k over stock llama.cpp: 26.1 → 38.3 tok/s</span></li>
-    <li><b data-ru="0,5 с">0.5 s</b><span data-ru="восстановить сессию на 100 тыс. токенов (было 156 с)">to restore a 100k-token session (was 156 s)</span></li>
+    <li><b>35B</b><span data-ru="модель для кода на одной видеокарте 16 ГБ, контекст до 200 тыс. токенов">coding model on one 16 GB GPU, context up to 200k tokens</span></li>
+    <li><b data-ru="72 ток/с">72 tok/s</b><span data-ru="скорость ответа при открытом браузере и IDE, 1,5 ГиБ видеопамяти оставлено рабочему столу">answer speed with the browser and IDE open, 1.5 GiB of VRAM left to the desktop</span></li>
+    <li><b data-ru="0,14 с">0.14 s</b><span data-ru="восстановить сессию на 32 тыс. токенов (было 42 с)">to restore a 32k-token session (was 42 s)</span></li>
     <li><b data-ru="7 баз">7 DBs</b><span data-ru="1С синхронизируются с ERP, расчёт сходится до копейки">of 1C synced with the ERP, payroll matches to the cent</span></li>
   </ul>
 </section>
@@ -92,11 +89,11 @@
     </div>
     <div class="shot light"><img src="img/shura-how.svg" width="1040" height="360" loading="lazy" alt="How Shura works: the coding agent talks to the gateway, the gateway runs llama-server, the model is split between GPU and RAM"></div>
     <div class="case-cols">
-      <div><h4 data-ru="Задача">Problem</h4><p data-ru="Сильные модели для кода не помещаются в 12 ГБ видеопамяти, а если помещаются, то рабочий стол начинает тормозить.">Strong coding models do not fit in 12 GB of VRAM, and when they do, the desktop starts to stutter.</p></div>
+      <div><h4 data-ru="Задача">Problem</h4><p data-ru="Сильные модели для кода не помещаются в 16 ГБ видеопамяти, а если помещаются, то рабочий стол начинает тормозить.">Strong coding models do not fit in 16 GB of VRAM, and when they do, the desktop starts to stutter.</p></div>
       <div><h4 data-ru="Что сделал">What I built</h4><p data-ru="OpenAI-совместимый шлюз на Python: грузит модель по запросу, переживает сбои, сохраняет длинные сессии. Свой форк llama.cpp на C++ с кешем экспертов и контролем видеопамяти. Набор из 111 агентных задач для оценки.">An OpenAI-compatible gateway in Python that loads the model on demand, survives crashes and saves long sessions. My own llama.cpp fork in C++ with an expert cache and a VRAM governor. A harness of 111 agentic coding tasks.</p></div>
-      <div><h4 data-ru="Результат">Result</h4><p data-ru="38–39 ток/с на 187k контекста при открытом браузере и IDE. Сессия на 100k токенов восстанавливается за 0,5 с вместо 156 с. 580+ тестов, CI на Linux, macOS и Windows.">38–39 tok/s at 187k context with the browser and IDE open. A 100k-token session restores in 0.5 s instead of 156 s. 580+ tests, CI on Linux, macOS and Windows.</p></div>
+      <div><h4 data-ru="Результат">Result</h4><p data-ru="72 ток/с на 12k контекста и 35 на 177k, промпт читается со скоростью до 1700 ток/с. Сессия на 32k токенов восстанавливается за 0,14 с вместо 42 с. 580+ тестов, CI на Linux, macOS и Windows.">72 tok/s at 12k context and 35 at 177k, prompts read at up to 1,700 tok/s. A 32k-token session restores in 0.14 s instead of 42 s. 580+ tests, CI on Linux, macOS and Windows.</p></div>
     </div>
-    <p class="stack">Python · C++ · llama.cpp · CUDA / ROCm · MCP · Docker</p>
+    <p class="stack">Python · C++ · llama.cpp · ROCm / HIP · MCP · Docker</p>
   </article>
 
   <article class="case">

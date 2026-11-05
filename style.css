@@ -176,7 +176,7 @@ nav a { text-decoration: none; padding: 10px 0; }
   .t-out { font-size: 0.78rem; }
   .term-status { flex-direction: column; gap: 2px; padding: 10px 14px; }
   .term-ctx { padding: 12px 14px 14px; }
-  .chips { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); width: 100%; }
+  .chips { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); width: 100%; }
   .chips button { min-width: 0; padding: 0; font-size: 0.8125rem; }
   .numbers li { padding: 18px 16px; }
   .projects { padding-top: 96px; }
