@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Blog · Alisher Sharipov</title>
+<title data-ru="Блог · Alisher Sharipov">Blog · Alisher Sharipov</title>
 <meta name="description" content="Notes from building a local AI coding setup on a consumer GPU: measured numbers, dead ends, and what comes next.">
 <meta name="theme-color" content="#111312">
 <link rel="canonical" href="https://hikkian.github.io/blog/">
@@ -18,39 +18,73 @@
   <div class="wrap top-in">
     <a class="name" href="../">Alisher Sharipov</a>
     <nav aria-label="Sections">
-      <a href="../#projects">Projects</a>
-      <a href="../#work">Experience</a>
-      <a href="../#contact">Contact</a>
+      <a href="../#projects" data-ru="Проекты">Projects</a>
+      <a href="../#work" data-ru="Опыт">Experience</a>
+      <a href="../#contact" data-ru="Контакты">Contact</a>
       <a href="./" aria-current="page">Blog</a>
+      <button class="lang" type="button" id="lang" title="Русский / English">RU</button>
     </nav>
   </div>
 </header>
 
 <main class="blog-main">
 
-<section class="wrap blog-head" aria-labelledby="blog-h">
-  <h1 id="blog-h">Blog</h1>
-  <p>Notes from building a local AI coding setup on a consumer GPU: measured numbers, dead ends, and what comes next.</p>
-  <a class="feed-link" href="feed.xml">RSS feed</a>
+<section class="wrap blog-intro" aria-labelledby="blog-h">
+  <h1 id="blog-h" data-ru="Блог">Blog</h1>
+  <p data-ru="Заметки о том, как я строю локальный ИИ для программирования на одной потребительской видеокарте: измеренные цифры, тупики и что будет дальше.">Notes from building a local AI coding setup on a consumer GPU: measured numbers, dead ends, and what comes next.</p>
 </section>
 
-<section class="wrap" aria-label="Posts">
-  <ol class="post-list">
-    <!-- Posts are added here, newest first. Template: _template.html -->
-    <li>
-      <time datetime="2026-11-09">November 9, 2026</time>
-      <h2><a href="local-llm-that-gets-better.html">I'm building a local LLM that actually gets better the longer I use it</a></h2>
-      <p>Shura: a local AI coding assistant on one RX 7800 XT that should keep improving from the work we do together. The plan, the principles, and what I don't know yet.</p>
-    </li>
-  </ol>
+<section class="wrap blog-entries" aria-label="Posts">
+
+  <article class="sheet">
+    <h2 class="sheet-title"><a href="local-llm-that-gets-better.html" data-ru="Я строю локальную LLM, которая становится лучше, чем дольше я ей пользуюсь">I'm building a local LLM that actually gets better the longer I use it</a></h2>
+    <p class="sheet-lead" data-ru="Shura: локальный ИИ-ассистент для программирования на одной RX 7800 XT, который должен становиться лучше благодаря нашей совместной работе. План, принципы и то, чего я пока не знаю.">Shura: a local AI coding assistant on one RX 7800 XT that should keep improving from the work we do together. The plan, the principles, and what I don't know yet.</p>
+
+    <dl class="log" aria-label="Key numbers">
+      <div class="log-row">
+        <dt data-ru="Декодирование с MTP">Decode with MTP</dt>
+        <dd><b>78</b> tok/s</dd>
+      </div>
+      <div class="log-row">
+        <dt data-ru="Контекст">Context</dt>
+        <dd><b>200k</b></dd>
+      </div>
+      <div class="log-row">
+        <dt data-ru="Префилл, вход 100k токенов">Prefill, 100k-token input</dt>
+        <dd><b>~1,000</b> tok/s</dd>
+      </div>
+    </dl>
+
+    <ul class="tags" aria-label="Tags">
+      <li>AMD</li>
+      <li>MoE</li>
+      <li data-ru="непрерывное обучение">lifelong</li>
+    </ul>
+
+    <p class="sheet-meta"><time datetime="2026-11-09" data-ru="9 ноября 2026">November 9, 2026</time><span class="sep" aria-hidden="true">·</span><span data-ru="5 мин чтения">5 min read</span></p>
+
+    <a class="button" href="local-llm-that-gets-better.html" data-ru="Читать пост">Read the post</a>
+  </article>
+
+</section>
+
+<section class="wrap about" aria-labelledby="about-h">
+  <h2 id="about-h" data-ru="О проекте">About the project</h2>
+  <p data-ru="Shura — локальный ассистент для программирования. Работает на одной AMD RX 7800 XT с 16 ГБ видеопамяти. Всё остаётся на машине. Код открыт на GitHub.">Shura is a local coding assistant that runs on one AMD RX 7800 XT with 16 GB of VRAM. Everything stays on the machine. The code is open on GitHub.</p>
+  <ul class="about-links">
+    <li><a href="https://github.com/hikkian/shura" data-ru="GitHub: hikkian/shura">GitHub: hikkian/shura</a></li>
+    <li><a href="feed.xml" data-ru="Лента RSS">RSS feed</a></li>
+  </ul>
+  <p class="about-note" data-ru="Подписаться можно через RSS-читалку: вставьте в неё адрес ленты.">To follow new posts, paste the feed address into any RSS reader.</p>
 </section>
 
 </main>
 
 <footer class="foot wrap">
   <span>© 2026 Alisher Sharipov</span>
-  <a href="../">Home</a>
+  <a href="../" data-ru="На главную">Home</a>
 </footer>
 
+<script src="blog.js" defer></script>
 </body>
 </html>

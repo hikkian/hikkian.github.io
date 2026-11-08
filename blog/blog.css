@@ -1,21 +1,62 @@
 /* Blog pages. Load after ../style.css: they reuse its tokens and header, add only blog layout.
    No hairlines: separation comes from space and from one step in surface tone. */
 
+/* ---------- Blog index ---------- */
+
 .blog-main { padding-bottom: 96px; }
 
-.blog-head { padding-top: 64px; padding-bottom: 40px; }
-.blog-head h1 { font-size: var(--step-head); font-weight: 700; letter-spacing: -0.02em; }
-.blog-head p { margin: 20px 0 0; max-width: 60ch; color: var(--muted); font-size: var(--step-lead); line-height: 1.45; }
-.blog-head .feed-link { display: inline-block; margin-top: 20px; font-size: var(--step-small); color: var(--muted); }
+/* Index blocks share one centred 720px column, like the post. */
+.blog-intro, .blog-entries, .about { max-width: 720px; margin-inline: auto; }
+.blog-intro { padding-top: 72px; display: grid; gap: 18px; }
+.blog-intro h1 { font-size: clamp(3rem, 1.8rem + 6vw, 7rem); font-weight: 700; letter-spacing: -0.035em; line-height: 0.95; }
+.blog-intro p { margin: 0; color: var(--ink); font-size: var(--step-lead); line-height: 1.5; }
 
-.post-list { list-style: none; margin: 0; padding: 0; }
-.post-list li { padding: 32px 0; display: grid; gap: 8px; }
-.post-list time, .post-meta { font-size: var(--step-small); color: var(--muted); }
-.post-list h2 { font-size: var(--step-h3); font-weight: 650; letter-spacing: -0.015em; line-height: 1.2; }
-.post-list h2 a { text-decoration: none; }
-.post-list h2 a:hover { color: var(--accent); }
-.post-list p { margin: 0; color: var(--muted); max-width: 66ch; }
-.empty { padding: 48px 0; color: var(--muted); }
+/* The post as a printed measurement sheet: paper-tone panel, log rows with leaders. */
+.blog-entries { padding-top: 48px; }
+.sheet { max-width: 720px; background: var(--surface); border-radius: 12px; padding: clamp(24px, 4vw, 40px); display: grid; gap: 18px; }
+.sheet-meta { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: var(--step-small); color: var(--ink); }
+.sheet-meta .sep { color: var(--muted); }
+.sheet-title { font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.25rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; text-wrap: balance; }
+.sheet-title a { text-decoration: none; }
+.sheet-title a:hover { color: var(--accent); }
+.sheet-lead { margin: 0; color: var(--ink); font-size: var(--step-body); line-height: 1.55; }
+
+/* Entrance: each block of the index rises once on load. Transform and opacity only. */
+@keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+.blog-intro > *, .sheet > *, .about > * { animation: rise .6s var(--ease) both; }
+.sheet > :nth-child(2) { animation-delay: .08s; }
+.sheet > :nth-child(3) { animation-delay: .16s; }
+.sheet > :nth-child(4) { animation-delay: .24s; }
+.sheet > :nth-child(5) { animation-delay: .32s; }
+.sheet > :nth-child(6) { animation-delay: .4s; }
+.sheet > :nth-child(7) { animation-delay: .48s; }
+.about > :nth-child(2) { animation-delay: .12s; }
+.about > :nth-child(3) { animation-delay: .2s; }
+.about > :nth-child(4) { animation-delay: .28s; }
+.blog-intro > :nth-child(2) { animation-delay: .08s; }
+@media (prefers-reduced-motion: reduce) {
+  .blog-intro > *, .sheet > *, .about > * { animation: none; }
+}
+
+/* Log rows: label, dotted leader, value. */
+.log { margin: 6px 0 0; display: grid; gap: 12px; }
+.log-row { display: flex; align-items: baseline; gap: 12px; margin: 0; }
+.log-row { min-width: 0; }
+.log-row dt { color: var(--ink); font-size: var(--step-small); min-width: 0; overflow-wrap: anywhere; }
+.log-row::after { content: ""; order: 1; flex: 1; min-width: 16px; border-bottom: 3px dotted var(--muted); transform: translateY(-4px); }
+.log-row dd { order: 2; margin: 0; white-space: nowrap; font-size: var(--step-small); color: var(--ink); font-variant-numeric: tabular-nums; }
+.log-row dd b { color: var(--accent); font-size: 1.25em; font-weight: 700; }
+
+.tags { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: var(--step-small); color: var(--ink); }
+
+.sheet .button { justify-self: start; }
+
+.about { padding-top: 96px; display: grid; gap: 16px; }
+.about h2 { font-size: var(--step-h3); font-weight: 650; letter-spacing: -0.015em; }
+.about p { margin: 0; color: var(--ink); line-height: 1.6; }
+.about-links { list-style: none; margin: 6px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 12px 28px; font-size: var(--step-small); }
+.about-links a { color: var(--accent); }
+.about-note { color: var(--ink); font-size: var(--step-small); }
 
 /* ---------- Post page ---------- */
 
@@ -108,7 +149,9 @@
 }
 
 @media (max-width: 600px) {
-  .blog-head { padding-top: 40px; padding-bottom: 28px; }
+  .blog-intro { padding-top: 40px; }
+  .blog-entries { padding-top: 32px; }
+  .about { padding-top: 64px; }
   .post { padding-top: 36px; }
   .post-head { margin-bottom: 36px; }
   .post-head h1 { font-size: 1.75rem; }
