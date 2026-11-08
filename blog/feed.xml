@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Alisher Sharipov · Blog</title>
+    <link>https://hikkian.github.io/blog/</link>
+    <description>Notes from building a local AI coding setup on a consumer GPU: measured numbers, dead ends, and what comes next.</description>
+    <language>en</language>
+    <lastBuildDate>Sun, 08 Nov 2026 12:00:00 +0000</lastBuildDate>
+    <atom:link href="https://hikkian.github.io/blog/feed.xml" rel="self" type="application/rss+xml"/>
+  </channel>
+</rss>
