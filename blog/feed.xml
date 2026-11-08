@@ -5,7 +5,14 @@
     <link>https://hikkian.github.io/blog/</link>
     <description>Notes from building a local AI coding setup on a consumer GPU: measured numbers, dead ends, and what comes next.</description>
     <language>en</language>
-    <lastBuildDate>Sun, 08 Nov 2026 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 09 Nov 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://hikkian.github.io/blog/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>I'm building a local LLM that actually gets better the longer I use it</title>
+      <link>https://hikkian.github.io/blog/local-llm-that-gets-better.html</link>
+      <guid>https://hikkian.github.io/blog/local-llm-that-gets-better.html</guid>
+      <pubDate>Mon, 09 Nov 2026 00:00:00 +0000</pubDate>
+      <description>Shura: a local AI coding assistant on one RX 7800 XT that should keep improving from the work we do together.</description>
+    </item>
   </channel>
 </rss>

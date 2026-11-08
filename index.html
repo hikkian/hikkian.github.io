@@ -70,7 +70,7 @@ Tests: 48 of 48 passed.</pre>
     </div>
     <div class="term-status">
       <span>Tiel-Coder-35B · RX 7800 XT 16 GB</span>
-      <span><b id="tps">93</b> tok/s</span>
+      <span><b id="tps">78</b> tok/s</span>
     </div>
     <div class="term-ctx">
       <span class="ctx-label" data-ru="Контекст">Context</span>
@@ -93,8 +93,8 @@ Tests: 48 of 48 passed.</pre>
         <ol class="flow-nodes">
           <li data-at="0.02"><b>ShuraCode</b><span data-ru="Агент отправляет вопрос и нужные файлы на ваш же компьютер.">The agent sends your question and the files it needs, to your own machine.</span></li>
           <li data-at="0.27"><b data-ru="Шлюз">Gateway</b><span data-ru="Будит модель, если она спит, и поднимает сохранённую сессию за 0,14 с.">Wakes the model if it sleeps and restores the saved session in 0.14 s.</span></li>
-          <li data-at="0.52"><b>llama-server</b><span data-ru="Читает промпт со скоростью 1766 токенов в секунду.">Reads the prompt at 1,766 tokens per second.</span></li>
-          <li data-at="0.77"><b data-ru="GPU + RAM">GPU + RAM</b><span data-ru="Горячие эксперты на видеокарте, холодные в памяти. Ответ идёт со скоростью 79 ток/с.">Hot experts on the GPU, cold ones in RAM. The answer streams at 79 tok/s.</span></li>
+          <li data-at="0.52"><b>llama-server</b><span data-ru="Читает промпт на 100k токенов со скоростью около 1000 токенов в секунду.">Reads a 100k-token prompt at about 1,000 tokens per second.</span></li>
+          <li data-at="0.77"><b data-ru="GPU + RAM">GPU + RAM</b><span data-ru="Горячие эксперты на видеокарте, холодные в памяти. Ответ идёт со скоростью около 78 ток/с.">Hot experts on the GPU, cold ones in RAM. The answer streams at about 78 tok/s.</span></li>
         </ol>
       </div>
       <p class="flow-count"><b id="flow-tokens">0</b> <span data-ru="токенов ответа, ни одного байта в облако">answer tokens, zero bytes to the cloud</span></p>
@@ -106,7 +106,7 @@ Tests: 48 of 48 passed.</pre>
   <h2 id="numbers-h" class="visually-hidden" data-ru="В цифрах">In numbers</h2>
   <ul>
     <li><b>35B</b><span data-ru="модель для кода на одной видеокарте 16 ГБ, контекст до 200 тыс. токенов">coding model on one 16 GB GPU, context up to 200k tokens</span></li>
-    <li><b data-ru="93 ток/с">93 tok/s</b><span data-ru="скорость ответа на коротком контексте, 1,5 ГиБ видеопамяти остаются рабочему столу">answer speed on short context, with 1.5 GiB of VRAM kept free for the desktop</span></li>
+    <li><b data-ru="78 ток/с">78 tok/s</b><span data-ru="скорость ответа на коротком контексте, 1,5 ГиБ видеопамяти остаются рабочему столу">answer speed on short context, with 1.5 GiB of VRAM kept free for the desktop</span></li>
     <li><b data-ru="0,14 с">0.14 s</b><span data-ru="восстановить сессию на 32 тыс. токенов (было 42 с)">to restore a 32k-token session (was 42 s)</span></li>
     <li><b data-ru="7 баз">7 DBs</b><span data-ru="1С синхронизируются с ERP, расчёт сходится до копейки">of 1C synced with the ERP, payroll matches to the cent</span></li>
   </ul>
@@ -125,7 +125,7 @@ Tests: 48 of 48 passed.</pre>
     <div class="case-cols">
       <div><h4 data-ru="Задача">Problem</h4><p data-ru="Сильные модели для кода не помещаются в 16 ГБ видеопамяти, а если помещаются, то рабочий стол начинает тормозить.">Strong coding models do not fit in 16 GB of VRAM, and when they fit, the desktop starts to stutter.</p></div>
       <div><h4 data-ru="Что сделал">What I built</h4><p data-ru="OpenAI-совместимый шлюз на Python: грузит модель по запросу, переживает сбои, сохраняет длинные сессии. Свой форк llama.cpp на C++ с кешем экспертов и контролем видеопамяти. Набор из 111 агентных задач для оценки.">An OpenAI-compatible gateway in Python that loads the model on demand, survives crashes and saves long sessions. My own llama.cpp fork in C++ with an expert cache and a VRAM governor. A harness of 111 agentic coding tasks.</p></div>
-      <div><h4 data-ru="Результат">Result</h4><p data-ru="93 ток/с на коротком контексте, 79 на 28k и 57 на 100k, промпт читается со скоростью до 1770 ток/с. Сессия на 32k токенов восстанавливается за 0,14 с вместо 42 с. 580+ тестов, CI на Linux, macOS и Windows.">93 tok/s on short context, 79 at 28k and 57 at 100k, prompts read at up to 1,770 tok/s. A 32k-token session restores in 0.14 s instead of 42 s. 580+ tests, CI on Linux, macOS and Windows.</p></div>
+      <div><h4 data-ru="Результат">Result</h4><p data-ru="78 ток/с на коротком контексте с MTP, контекст до 200k, промпт на 100k читается со скоростью около 1000 ток/с. Сессия на 32k токенов восстанавливается за 0,14 с вместо 42 с. 580+ тестов, CI на Linux, macOS и Windows.">78 tok/s on short context with MTP, up to 200k context, a 100k-token prompt read at about 1,000 tok/s. A 32k-token session restores in 0.14 s instead of 42 s. 580+ tests, CI on Linux, macOS and Windows.</p></div>
     </div>
     <p class="stack">Python · C++ · llama.cpp · ROCm / HIP · MCP · Docker</p>
   </article>
