@@ -19,16 +19,20 @@
 
 /* ---------- Post page ---------- */
 
+/* One reading column, centred: the post, its title and its blocks share its edges. */
 .post { padding-top: 56px; }
+.post article { max-width: 720px; margin-inline: auto; }
 .post-head { display: grid; gap: 14px; margin-bottom: 48px; }
-.post-head h1 { font-size: clamp(1.9rem, 1.2rem + 3vw, 3.5rem); font-weight: 700; letter-spacing: -0.025em; line-height: 1.08; text-wrap: balance; }
-.post-lead { font-size: var(--step-lead); color: var(--muted); max-width: 60ch; line-height: 1.5; margin: 0; }
+.post-head h1 { font-size: 2.5rem; font-weight: 700; letter-spacing: -0.025em; line-height: 1.1; text-wrap: balance; }
+.post-lead { font-size: var(--step-lead); color: var(--ink); line-height: 1.5; margin: 0; }
+.post-meta { color: var(--ink); }
+.post-foot a { color: var(--accent); }
 
 .toc { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 16px; font-size: var(--step-small); }
-.toc a { color: var(--muted); text-decoration: none; }
-.toc a:hover { color: var(--accent); }
+.toc a { color: var(--accent); text-decoration: none; }
+.toc a:hover { text-decoration: underline; }
 
-.post-body { max-width: 68ch; }
+.post-body { color: var(--ink); }
 .post-body h2 { font-size: var(--step-h3); font-weight: 650; letter-spacing: -0.015em; margin: 64px 0 18px; scroll-margin-top: 88px; }
 .post-body p { margin: 0 0 18px; }
 .post-body ul, .post-body ol { margin: 0 0 22px; padding-left: 22px; }
@@ -42,9 +46,9 @@
 /* Key numbers: big figure, one short line under it. */
 .stats { list-style: none; padding: 0; margin: 28px 0 36px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
 .stats li { margin: 0; padding: 24px 22px 26px; background: var(--surface); border-radius: 8px; display: grid; gap: 10px; align-content: start; }
-.stats b { font-size: clamp(2.25rem, 1.2rem + 2.6vw, 3.5rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1; color: var(--accent); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
-.stats b small { font-size: 0.42em; font-weight: 600; letter-spacing: 0; white-space: nowrap; }
-.stats span { color: var(--muted); font-size: var(--step-small); line-height: 1.45; }
+.stats b { font-size: clamp(2.25rem, 1.4rem + 1.6vw, 2.5rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1; color: var(--accent); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.stats b small { font-size: 0.4em; font-weight: 600; letter-spacing: 0; white-space: nowrap; }
+.stats span { color: var(--ink); font-size: var(--step-small); line-height: 1.45; }
 
 /* Layers: four steps, each one set in from the last, so the order reads as a climb. */
 .ladder { list-style: none; padding: 0; margin: 28px 0 32px; display: grid; gap: 8px; }
@@ -53,7 +57,7 @@
 .ladder li:nth-child(2) { margin-left: 24px; background: #212724; }
 .ladder li:nth-child(3) { margin-left: 48px; background: #262d2a; }
 .ladder li:nth-child(4) { margin-left: 72px; background: #2c3430; }
-.ladder h3 { font-size: 1.2rem; font-weight: 650; letter-spacing: -0.01em; color: var(--accent); }
+.ladder h3 { font-size: 1.2rem; font-weight: 650; letter-spacing: -0.01em; color: var(--ink); }
 .ladder p { margin: 8px 0 0; }
 
 /* Loop diagram. Colours come from the page tokens, so it follows the theme. */
@@ -65,7 +69,7 @@
 .cycle .label-end { fill: var(--accent-ink); }
 .cycle .flow, .cycle .loop { fill: none; stroke: var(--muted); stroke-width: 2; }
 .cycle .arrowhead { fill: var(--muted); }
-.cycle figcaption { margin-top: 14px; font-size: var(--step-small); color: var(--muted); line-height: 1.5; }
+.cycle figcaption { margin-top: 14px; font-size: var(--step-small); color: var(--ink); line-height: 1.5; }
 
 /* What I don't know: its own panel, the one place the post asks to be read slowly. */
 .unknown { margin: 44px 0 52px; padding: 28px 28px 10px; background: var(--surface); border-radius: 10px; }
@@ -74,13 +78,13 @@
 /* Principles as a checklist. The boxes are decoration; the list is read as text. */
 .checklist { list-style: none; padding: 0; margin: 24px 0 36px; display: grid; gap: 14px; }
 .checklist li { position: relative; margin: 0; padding-left: 40px; }
-.checklist li::before { content: ""; position: absolute; left: 0; top: 0.3em; width: 18px; height: 18px; border: 2px solid var(--accent); border-radius: 4px; box-sizing: border-box; }
-.checklist li::after { content: ""; position: absolute; left: 6px; top: 0.3em; width: 5px; height: 10px; border: solid var(--accent); border-width: 0 2px 2px 0; transform: rotate(45deg); }
+.checklist li::before { content: ""; position: absolute; left: 0; top: 0.3em; width: 18px; height: 18px; border: 2px solid var(--muted); border-radius: 4px; box-sizing: border-box; }
+.checklist li::after { content: ""; position: absolute; left: 6px; top: 0.3em; width: 5px; height: 10px; border: solid var(--ink); border-width: 0 2px 2px 0; transform: rotate(45deg); }
 
 .links { display: flex; flex-wrap: wrap; gap: 12px 28px; margin-top: 40px; font-size: var(--step-small); }
 .links a { color: var(--accent); }
 
-.post-foot { margin-top: 64px; background: var(--surface); padding: 20px 24px; border-radius: 8px; font-size: var(--step-small); color: var(--muted); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.post-foot { margin-top: 64px; background: var(--surface); padding: 20px 24px; border-radius: 8px; font-size: var(--step-small); color: var(--ink); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 
 /* Numbers tables: wrap in .table-wrap so narrow screens scroll the table, not the page. */
 .table-wrap { overflow-x: auto; margin: 24px 0 28px; }
@@ -98,6 +102,7 @@
   .blog-head { padding-top: 40px; padding-bottom: 28px; }
   .post { padding-top: 36px; }
   .post-head { margin-bottom: 36px; }
+  .post-head h1 { font-size: 1.75rem; }
   .post-body h2 { margin-top: 48px; }
   .spec { grid-template-columns: 1fr; }
   .ladder li:nth-child(2) { margin-left: 12px; }

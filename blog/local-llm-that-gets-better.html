@@ -60,9 +60,9 @@
       <p>I'm currently running a Qwen3.6-35B-A3B finetune, a MoE model with roughly 3B active parameters. Most of the model sits on the GPU, and some of the experts are offloaded to system RAM.</p>
       <p>After quite a bit of experimenting, I'm getting around <strong>78 tok/s decode with MTP</strong> on normal coding workloads (up to ~28k context). For longer tasks, I can go up to 200k context, with roughly <strong>1,000 tok/s prefill on a 100k-token input</strong> in my test setup.</p>
       <ul class="stats" aria-label="Key numbers">
-        <li><b>78<small> tok/s</small></b><span>decode with MTP on normal coding work, up to ~28k context</span></li>
+        <li><b>78<small>&nbsp;tok/s</small></b><span>decode with MTP on normal coding work, up to ~28k context</span></li>
         <li><b>200k</b><span>context for longer tasks</span></li>
-        <li><b>~1,000<small> tok/s</small></b><span>prefill on a 100k-token input, in my test setup</span></li>
+        <li><b>~1,000<small>&nbsp;tok/s</small></b><span>prefill on a 100k-token input, in my test setup</span></li>
       </ul>
       <p>Getting there wasn't straightforward. I tried several optimizations that looked promising on paper and turned out to make almost no difference. I'll be documenting those failures too, since I wish I'd had that information when I started.</p>
       <p>I also spent time making sure the assistant doesn't interfere with normal desktop use. If I launch a game, it gives back the resources. If I'm on a call, it won't start loading a huge model into VRAM. That part already works in my test setup.</p>
