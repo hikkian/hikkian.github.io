@@ -61,13 +61,22 @@
 .ladder p { margin: 8px 0 0; }
 
 /* Loop diagram. Colours come from the page tokens, so it follows the theme. */
-.cycle { margin: 36px 0 44px; max-width: 420px; }
+.cycle { margin: 40px auto 48px; max-width: 460px; }
 .cycle svg { display: block; width: 100%; height: auto; }
 .cycle .node { fill: var(--surface); }
-.cycle .node-end { fill: var(--accent); }
+.cycle .node-good { fill: var(--accent); }
+.cycle .node-bad { fill: none; stroke: var(--muted); stroke-width: 1.5; stroke-dasharray: 5 4; }
+.cycle .step { fill: none; stroke: var(--accent); stroke-width: 2; }
+.cycle .step-n { fill: var(--accent); font-family: var(--font); font-size: 15px; font-weight: 700; text-anchor: middle; dominant-baseline: central; }
+.cycle .label-l { fill: var(--ink); font-family: var(--font); font-size: 18px; font-weight: 650; dominant-baseline: central; }
+.cycle .sub-l { fill: var(--muted); font-family: var(--font); font-size: 14px; dominant-baseline: central; }
+.cycle .sub { fill: var(--muted); font-family: var(--font); font-size: 14px; text-anchor: middle; dominant-baseline: central; }
+.cycle .label-good { fill: var(--accent-ink); font-family: var(--font); font-size: 18px; font-weight: 700; text-anchor: middle; dominant-baseline: central; }
+.cycle .sub-good { fill: var(--accent-ink); font-family: var(--font); font-size: 14px; text-anchor: middle; dominant-baseline: central; opacity: .85; }
 .cycle .label { fill: var(--ink); font-family: var(--font); font-size: 18px; font-weight: 600; text-anchor: middle; dominant-baseline: central; }
 .cycle .label-end { fill: var(--accent-ink); }
 .cycle .flow, .cycle .loop { fill: none; stroke: var(--muted); stroke-width: 2; }
+.cycle .loop { stroke-dasharray: 6 5; }
 .cycle .arrowhead { fill: var(--muted); }
 .cycle figcaption { margin-top: 14px; font-size: var(--step-small); color: var(--ink); line-height: 1.5; }
 
@@ -111,3 +120,4 @@
   .facts-table th, .facts-table td { padding: 8px 8px; }
   .facts-table td:last-child { white-space: normal; }
 }
+.cycle .loop { stroke-dasharray: 6 5; }

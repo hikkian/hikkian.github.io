@@ -90,26 +90,42 @@
         </li>
       </ol>
       <figure class="cycle">
-        <svg viewBox="0 0 360 440" role="img" aria-labelledby="cycle-t cycle-d">
-          <title id="cycle-t">The loop for a change</title>
-          <desc id="cycle-d">Four steps in a loop: I correct the behaviour, Shura suggests a rule, the rule is tested on my own tasks, and then I keep it or roll it back. Rolling back returns to the start of the loop.</desc>
+        <svg viewBox="0 0 440 470" role="img" aria-labelledby="cycle-t cycle-d">
+          <title id="cycle-t">How one change goes through the loop</title>
+          <desc id="cycle-d">Step 1: I correct the same thing again. Step 2: Shura suggests a rule and I say yes or no. Step 3: the rule is tested on my own tasks. Then it splits: if the tasks got better, the rule is kept; if anything got worse, it is rolled back. Either way the loop starts again with the next correction.</desc>
           <defs>
-            <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
               <path d="M0 0 L10 5 L0 10 z" class="arrowhead"/>
             </marker>
           </defs>
-          <rect class="node" x="40" y="16" width="280" height="64" rx="10"/>
-          <rect class="node" x="40" y="136" width="280" height="64" rx="10"/>
-          <rect class="node" x="40" y="256" width="280" height="64" rx="10"/>
-          <rect class="node node-end" x="40" y="376" width="280" height="48" rx="10"/>
-          <text x="180" y="48" class="label">I keep correcting it</text>
-          <text x="180" y="168" class="label">Shura suggests a rule</text>
-          <text x="180" y="288" class="label">Tests on my own tasks</text>
-          <text x="180" y="406" class="label label-end">Keep it, or roll it back</text>
-          <path class="flow" d="M180 80 V136" marker-end="url(#arrow)"/>
-          <path class="flow" d="M180 200 V256" marker-end="url(#arrow)"/>
-          <path class="flow" d="M180 320 V376" marker-end="url(#arrow)"/>
-          <path class="loop" d="M320 400 H344 V48 H320" marker-end="url(#arrow)"/>
+          <rect class="node" x="60" y="10" width="320" height="72" rx="12"/>
+          <circle class="step" cx="96" cy="46" r="15"/><text x="96" y="46" class="step-n">1</text>
+          <text x="124" y="37" class="label-l">I correct the same thing</text>
+          <text x="124" y="60" class="sub-l">again, in a real task</text>
+
+          <rect class="node" x="60" y="122" width="320" height="72" rx="12"/>
+          <circle class="step" cx="96" cy="158" r="15"/><text x="96" y="158" class="step-n">2</text>
+          <text x="124" y="149" class="label-l">Shura suggests a rule</text>
+          <text x="124" y="172" class="sub-l">I say yes or no</text>
+
+          <rect class="node" x="60" y="234" width="320" height="72" rx="12"/>
+          <circle class="step" cx="96" cy="270" r="15"/><text x="96" y="270" class="step-n">3</text>
+          <text x="124" y="261" class="label-l">Tested on my own tasks</text>
+          <text x="124" y="284" class="sub-l">old ones included</text>
+
+          <rect class="node node-good" x="20" y="366" width="190" height="64" rx="12"/>
+          <text x="115" y="388" class="label-good">Better</text>
+          <text x="115" y="410" class="sub-good">keep the rule</text>
+          <rect class="node node-bad" x="230" y="366" width="190" height="64" rx="12"/>
+          <text x="325" y="388" class="label">Worse</text>
+          <text x="325" y="410" class="sub">roll it back</text>
+
+          <path class="flow" d="M220 82 V118" marker-end="url(#arrow)"/>
+          <path class="flow" d="M220 194 V230" marker-end="url(#arrow)"/>
+          <path class="flow" d="M220 306 V330 H115 V362" marker-end="url(#arrow)"/>
+          <path class="flow" d="M220 330 H325 V362" marker-end="url(#arrow)"/>
+          <path class="loop" d="M20 398 H8 V46 H56" marker-end="url(#arrow)"/>
+          <text x="220" y="458" class="sub">then the next correction starts the loop again</text>
         </svg>
         <figcaption>Every change goes round this loop. It is kept only if it passes on my own tasks; otherwise it is rolled back.</figcaption>
       </figure>
