@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title data-ru="Я строю локальную LLM, которая становится лучше, чем дольше я ей пользуюсь · Alisher Sharipov">I'm building a local LLM that actually gets better the longer I use it · Alisher Sharipov</title>
+<meta name="description" content="Shura: a local AI coding assistant on one RX 7800 XT that should keep improving from the work we do together. The plan, the principles, and what I don't know yet.">
+<meta property="og:title" content="I'm building a local LLM that actually gets better the longer I use it">
+<meta property="og:description" content="Shura: a local AI coding assistant on one RX 7800 XT that should keep improving from the work we do together.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://hikkian.github.io/blog/local-llm-that-gets-better/">
+<meta property="og:image" content="https://hikkian.github.io/blog/img/post1-preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://hikkian.github.io/blog/img/post1-preview.png">
+<meta name="theme-color" content="#111312">
+<link rel="canonical" href="https://hikkian.github.io/blog/local-llm-that-gets-better/">
+<link rel="icon" href="../../favicon.ico" sizes="32x32">
+<link rel="stylesheet" href="../../style.css">
+<link rel="stylesheet" href="../blog.css">
+<link rel="alternate" type="application/rss+xml" title="Alisher Sharipov · Blog" href="https://hikkian.github.io/blog/feed.xml">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="name" href="../../">Alisher Sharipov</a>
+    <nav aria-label="Sections">
+      <a href="../../#projects" data-ru="Проекты">Projects</a>
+      <a href="../../#work" data-ru="Опыт">Experience</a>
+      <a href="../../#contact" data-ru="Контакты">Contact</a>
+      <a href="../" aria-current="page" data-ru="Блог">Blog</a>
+      <button class="lang" type="button" id="lang" title="Русский / English">RU</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap post">
+  <article>
+    <header class="post-head">
+      <h1 data-ru="Я строю локальную LLM, которая становится лучше, чем дольше я ей пользуюсь">I'm building a local LLM that actually gets better the longer I use it</h1>
+      <p class="post-lead" data-ru="Я уже какое-то время запускаю локальные модели, и есть одна вещь, которая не даёт мне покоя.">I've been running local models for a while now, and there's one thing that keeps bothering me.</p>
+      <p class="post-meta" data-ru="<time datetime=&quot;2026-11-09&quot;>9 ноября 2026</time> · 5 мин чтения"><time datetime="2026-11-09">November 9, 2026</time> · 5 min read</p>
+      <nav class="toc" aria-label="On this page">
+        <a href="#hardware" data-ru="Железо">The hardware</a>
+        <a href="#next" data-ru="То, что я пока не понял">The part I haven't figured out</a>
+        <a href="#principles" data-ru="Принципы">Principles</a>
+        <a href="#why" data-ru="Зачем я об этом пишу">Why I'm sharing this</a>
+      </nav>
+    </header>
+
+    <div class="post-body">
+      <p data-ru="Каждый раз, когда выходит модель получше, я переключаюсь на неё, настраиваю всё заново, объясняю свои предпочтения, исправляю одни и те же ошибки и по сути начинаю с нуля. Новая модель может быть умнее, но она ничему не научилась за те месяцы, что я провёл с предыдущей.">Every time a better model comes out, I switch to it, get everything configured again, explain my preferences, correct the same mistakes, and basically start over. The new model might be smarter, but it hasn't learned anything from the months I spent working with the previous one.</p>
+      <p data-ru="Я хочу проверить, могу ли я это изменить.">I want to see if I can change that.</p>
+      <p data-ru="Я строю <strong>Shura</strong> — локального ИИ-ассистента для программирования, который я хочу со временем улучшать. Не просто обновляя базовую модель, а учась на той работе, которую мы делаем вместе.">I'm building <strong>Shura</strong>, a local AI coding assistant that I want to keep improving over time. Not just by upgrading the base model, but by learning from the work we do together.</p>
+      <p data-ru="И я пытаюсь сделать это на обычном домашнем компьютере, без выделенного сервера и дорогих видеокарт.">And I'm trying to do it on my regular desktop, without a dedicated server or expensive GPUs.</p>
+
+      <h2 id="hardware" data-ru="Железо и то, что уже работает">The hardware and what I've got working</h2>
+      <p data-ru="Конфигурация у меня довольно скромная:">My setup is pretty modest:</p>
+      <ul class="spec">
+        <li data-ru="Ryzen 5 5600">Ryzen 5 5600</li>
+        <li data-ru="32 ГБ DDR4">32 GB DDR4</li>
+        <li data-ru="RX 7800 XT (16 ГБ VRAM)">RX 7800 XT (16 GB VRAM)</li>
+        <li data-ru="Fedora Linux + ROCm">Fedora Linux + ROCm</li>
+      </ul>
+      <p data-ru="Сейчас я запускаю дообученную версию Qwen3.6-35B-A3B — MoE-модель примерно с 3B активных параметров. Большая часть модели сидит на видеокарте, а часть экспертов вынесена в оперативную память.">I'm currently running a Qwen3.6-35B-A3B finetune, a MoE model with roughly 3B active parameters. Most of the model sits on the GPU, and some of the experts are offloaded to system RAM.</p>
+      <p data-ru="После довольно долгих экспериментов я получаю около <strong>78 ток/с на декодировании с MTP</strong> на обычных задачах по программированию (до ~28k контекста). Для более длинных задач можно дойти до контекста 200k, и примерно <strong>1000 ток/с на префилле входа в 100k токенов</strong> — в моей тестовой конфигурации.">After quite a bit of experimenting, I'm getting around <strong>78 tok/s decode with MTP</strong> on normal coding workloads (up to ~28k context). For longer tasks, I can go up to 200k context, with roughly <strong>1,000 tok/s prefill on a 100k-token input</strong> in my test setup.</p>
+      <ul class="stats" aria-label="Key numbers">
+        <li><b>78<small>&nbsp;tok/s</small></b><span data-ru="декодирование с MTP на обычных задачах по программированию, до ~28k контекста">decode with MTP on normal coding work, up to ~28k context</span></li>
+        <li><b>200k</b><span data-ru="контекст для длинных задач">context for longer tasks</span></li>
+        <li><b>~1,000<small>&nbsp;tok/s</small></b><span data-ru="префилл входа в 100k токенов, в моей тестовой конфигурации">prefill on a 100k-token input, in my test setup</span></li>
+      </ul>
+      <p data-ru="Добраться до этого было непросто. Я попробовал несколько оптимизаций, которые на бумаге выглядели многообещающе, а на деле почти ничего не меняли. Я буду описывать и эти неудачи, потому что жалею, что не знал этой информации, когда начинал.">Getting there wasn't straightforward. I tried several optimizations that looked promising on paper and turned out to make almost no difference. I'll be documenting those failures too, since I wish I'd had that information when I started.</p>
+      <p data-ru="Мне было очень важно, чтобы компьютер оставался удобным. Модель всегда оставляет рабочему столу 1,5 ГБ видеопамяти, и если браузеру или видео посреди ответа вдруг понадобится больше, она отдаёт память примерно за четверть секунды и продолжает отвечать. Если я запускаю игру, она полностью уходит с дороги. Если я на звонке, она не начнёт загружать огромную модель в видеопамять. Всё это работает в моей тестовой конфигурации, и я хочу, чтобы модели как будто не было, пока она мне не нужна.">I also cared a lot about the PC staying usable. The model always leaves 1.5 GB of VRAM free for the desktop, and if the browser or a video suddenly needs more in the middle of an answer, it gives the memory back in about a quarter of a second and keeps going. If I start a game, it gets out of the way completely. If I'm on a call, it won't start loading a huge model into VRAM. All of this works in my test setup, and I want it to feel like the model just isn't there until I need it.</p>
+
+      <h2 id="next" data-ru="Теперь о том, что я пока не понял">Now for the part I haven't figured out yet</h2>
+      <p data-ru="Я не хочу, чтобы Shura просто запоминала что-то обо мне. Я хочу, чтобы она стала по-настоящему полезнее в той конкретной работе, которой я занимаюсь.">I don't want Shura to just remember things about me. I want it to become genuinely more useful at the specific work I do.</p>
+      <p data-ru="Допустим, я трижды исправляю одну и ту же ошибку в коде. Почему я должен исправлять её в четвёртый раз? А если я недели потрачу на то, чтобы объяснить, как устроен конкретный проект, почему эти знания должны пропасть, когда я переключаюсь на другую модель?">Say I correct the same coding mistake three times. Why should I have to correct it a fourth time? And if I spend weeks teaching it how a particular project works, why should that knowledge disappear when I switch models?</p>
+      <p data-ru="Вот что я собираюсь построить:">Here's what I'm planning to build:</p>
+      <ol class="ladder">
+        <li>
+          <h3 data-ru="Память">Memory</h3>
+          <p data-ru="Хранить подтверждённые факты, решения по проекту и полезный контекст. У каждой записи должен быть источник, и я должен иметь возможность посмотреть, отредактировать, выгрузить или удалить её.">Keep track of confirmed facts, project decisions, and useful context. Every memory should have a source, and I should be able to inspect, edit, export, or delete it.</p>
+        </li>
+        <li>
+          <h3 data-ru="Правила">Rules</h3>
+          <p data-ru="Если я снова и снова поправляю одно и то же поведение, Shura может предложить правило. Принимать его или нет решаю я, и правило должно пройти тесты, прежде чем вступит в силу.">If I keep correcting the same behavior, Shura can suggest a rule. I decide whether to accept it, and the rule has to pass tests before it becomes active.</p>
+        </li>
+        <li>
+          <h3 data-ru="Больше вычислений, когда это важно">More compute when it matters</h3>
+          <p data-ru="Для сложных задач генерировать несколько подходов и с помощью тестов выяснять, какой из них действительно работает, вместо того чтобы доверять первому ответу.">For harder problems, generate multiple approaches and use tests to figure out which one actually works instead of trusting the first answer.</p>
+        </li>
+        <li>
+          <h3 data-ru="Реальные обновления весов">Actual weight updates</h3>
+          <p data-ru="Это та часть, которая интересует меня больше всего. Я хочу обучать небольшие адаптеры LoRA на примерах, которые я явно подтвердил, не заменяя квантованную базовую модель, которой я пользуюсь каждый день.">This is the part I'm most interested in. I want to train small LoRA adapters using examples I've explicitly confirmed, without replacing the quantized base model I use every day.</p>
+        </li>
+      </ol>
+      <figure class="cycle">
+        <svg viewBox="0 0 440 470" role="img" aria-labelledby="cycle-t cycle-d">
+          <title id="cycle-t" data-ru="Как одно изменение проходит через цикл">How one change goes through the loop</title>
+          <desc id="cycle-d" data-ru="Шаг 1: я снова исправляю то же самое. Шаг 2: Shura предлагает правило, и я говорю да или нет. Шаг 3: правило проверяется на моих задачах. Затем развилка: если стало лучше, правило остаётся; если хуже, его откатывают. В любом случае цикл начинается заново со следующей правки.">Step 1: I correct the same thing again. Step 2: Shura suggests a rule and I say yes or no. Step 3: the rule is tested on my own tasks. Then it splits: if the tasks got better, the rule is kept; if anything got worse, it is rolled back. Either way the loop starts again with the next correction.</desc>
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 z" class="arrowhead"/>
+            </marker>
+          </defs>
+          <rect class="node" x="60" y="10" width="320" height="72" rx="12"/>
+          <circle class="step" cx="96" cy="46" r="15"/><text x="96" y="46" class="step-n">1</text>
+          <text x="124" y="37" class="label-l" data-ru="Снова исправляю то же">I correct the same thing</text>
+          <text x="124" y="60" class="sub-l" data-ru="снова, на реальной задаче">again, in a real task</text>
+
+          <rect class="node" x="60" y="122" width="320" height="72" rx="12"/>
+          <circle class="step" cx="96" cy="158" r="15"/><text x="96" y="158" class="step-n">2</text>
+          <text x="124" y="149" class="label-l" data-ru="Shura предлагает правило">Shura suggests a rule</text>
+          <text x="124" y="172" class="sub-l" data-ru="я говорю да или нет">I say yes or no</text>
+
+          <rect class="node" x="60" y="234" width="320" height="72" rx="12"/>
+          <circle class="step" cx="96" cy="270" r="15"/><text x="96" y="270" class="step-n">3</text>
+          <text x="124" y="261" class="label-l" data-ru="Проверка на моих задачах">Tested on my own tasks</text>
+          <text x="124" y="284" class="sub-l" data-ru="старые тоже учитываются">old ones included</text>
+
+          <rect class="node node-good" x="20" y="366" width="190" height="64" rx="12"/>
+          <text x="115" y="388" class="label-good" data-ru="Лучше">Better</text>
+          <text x="115" y="410" class="sub-good" data-ru="оставить правило">keep the rule</text>
+          <rect class="node node-bad" x="230" y="366" width="190" height="64" rx="12"/>
+          <text x="325" y="388" class="label" data-ru="Хуже">Worse</text>
+          <text x="325" y="410" class="sub" data-ru="откатить">roll it back</text>
+
+          <path class="flow" d="M220 82 V118" marker-end="url(#arrow)"/>
+          <path class="flow" d="M220 194 V230" marker-end="url(#arrow)"/>
+          <path class="flow" d="M220 306 V330 H115 V362" marker-end="url(#arrow)"/>
+          <path class="flow" d="M220 330 H325 V362" marker-end="url(#arrow)"/>
+          <path class="loop" d="M20 398 H8 V46 H56" marker-end="url(#arrow)"/>
+          <text x="220" y="458" class="sub" data-ru="потом следующая правка запускает цикл заново">then the next correction starts the loop again</text>
+        </svg>
+        <figcaption data-ru="Каждое изменение проходит через этот цикл. Оно остаётся, только если проходит на моих задачах; иначе его откатывают.">Every change goes round this loop. It is kept only if it passes on my own tasks; otherwise it is rolled back.</figcaption>
+      </figure>
+      <p data-ru="Надежда в том, что модель в конце концов станет лучше решать задачи моего типа, а не только лучше следовать моим предпочтениям в оформлении.">The hope is that the model eventually gets better at solving my kinds of problems, not just better at following my formatting preferences.</p>
+      <aside class="unknown">
+        <h3 data-ru="Чего я пока не знаю">What I don't know yet</h3>
+        <p data-ru="Я не уверен, насколько всё это реалистично.">I'm not sure how much of that is realistic yet.</p>
+        <p data-ru="Обучить адаптер для 35B MoE на видеокарте AMD с 16 ГБ — уже интересная задача. Добиться измеримого улучшения в рассуждениях — гораздо сложнее. И даже если обучение сработает, адаптер может просто переобучиться на моих примерах.">Training an adapter for a 35B MoE on a 16 GB AMD GPU is already an interesting problem. Getting a measurable improvement in reasoning is a much harder one. And even if the training works, it might just overfit to my examples.</p>
+        <p data-ru="Мой первый адаптер может немного улучшить работу. А может вообще ничего не изменить. Я хочу это измерить, а не считать, что он сработал.">My first adapter might improve things slightly. It might do absolutely nothing. I want to measure that rather than assume it worked.</p>
+      </aside>
+
+      <h2 id="principles" data-ru="Несколько принципов, которых я стараюсь придерживаться">A few principles I'm trying to stick to</h2>
+      <ul class="checklist">
+        <li data-ru="Изменения проверяются на моих собственных задачах, прежде чем я их оставлю. Если нахожу регрессии, должна быть возможность откатить.">Changes get tested against my own tasks before I keep them. If I find regressions, I want to be able to roll back.</li>
+        <li data-ru="Ничего не используется для обучения без моего явного подтверждения. Никакой записи экрана, фонового наблюдения или тихого сбора всего, что я делаю.">Nothing gets used for learning unless I've explicitly confirmed it. No screen recording, background monitoring, or silently collecting everything I do.</li>
+        <li data-ru="Всё остаётся локально. Никакого облачного обучения и никакой выгрузки личных переписок.">Everything stays local. No cloud training or uploading private conversations.</li>
+        <li data-ru="Ассистент не должен постоянно нагружать SSD или делать рабочий стол непригодным для работы.">The assistant shouldn't constantly hammer my SSD or make my desktop unusable.</li>
+        <li data-ru="Когда я в итоге переключусь на более сильную базовую модель, мои подтверждённые примеры, воспоминания и правила должны переехать вместе со мной. Адаптеры, привязанные к конкретной модели, я буду переобучать, а не надеяться, что они перенесутся.">When I eventually switch to a better base model, my confirmed examples, memories, and rules should come with me. I'll retrain any model-specific adapters rather than assume they'll transfer.</li>
+      </ul>
+      <p data-ru="Я также стараюсь, чтобы всё это было полезно на обычном потребительском железе. Если единственный способ заставить это работать — весь день гонять обучение на кучке дорогих видеокарт, для меня это лишает смысла всю затею.">I'm also trying to keep this useful on ordinary consumer hardware. If the only way to make it work is to run training jobs all day on a bunch of expensive GPUs, that kind of defeats the point for me.</p>
+
+      <h2 id="why" data-ru="Зачем я делюсь этим сейчас?">Why am I sharing this now?</h2>
+      <p data-ru="Потому что я хочу задокументировать весь процесс, включая эксперименты, которые не сработали.">Because I want to document the whole process, including the experiments that don't work.</p>
+      <p data-ru="Я буду публиковать бенчмарки, неудачные идеи, детали реализации и, надеюсь, реальные результаты «до и после». Я не хочу заявлять, что построил самообучающийся ИИ, пока даже не доказал, что первый адаптер помогает.">I'll be posting benchmarks, failed ideas, implementation details, and hopefully some actual before-and-after results. I don't want to claim I've built a self-improving AI when I haven't even proven that the first adapter helps.</p>
+      <p data-ru="Я буду рад услышать от всех, кто экспериментировал с LoRA на MoE-моделях, особенно на железе AMD. Или от тех, кто работает над чем-то похожим.">I'd also love to hear from anyone who's experimented with LoRA on MoE models, especially on AMD hardware. Or anyone working on something similar.</p>
+      <p data-ru="Если вам интересно протестировать Shura на своей машине или помочь с кодом, это тоже было бы здорово. Код лежит на <a href=&quot;https://github.com/hikkian/shura&quot;>GitHub</a>.">If you're interested in testing Shura on your own machine or contributing, that would be great too. The code is on <a href="https://github.com/hikkian/shura">GitHub</a>.</p>
+      <p><strong data-ru="Один вопрос, который мне правда интересен: если бы у вас была локальная модель, которую можно было бы годами постепенно улучшать, чему вы бы хотели, чтобы она научилась в первую очередь?">One question I'm curious about: if you had a local model that you could keep improving for years, what would you want it to learn first?</strong></p>
+      <p class="links">
+        <a href="https://github.com/hikkian/shura" data-ru="Shura на GitHub">Shura on GitHub</a>
+        <a href="../subscribe.html" data-ru="Подписаться (RSS)">Subscribe (RSS)</a>
+      </p>
+    </div>
+
+    <footer class="post-foot">
+      <span data-ru="Измерено на AMD RX 7800 XT, 16 ГБ.">Measured on an AMD RX 7800 XT, 16 GB.</span>
+      <a href="../" data-ru="Все записи">All posts</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="foot wrap">
+  <span>© 2026 Alisher Sharipov</span>
+  <a href="../../" data-ru="На главную">Home</a>
+</footer>
+
+<script src="../blog.js" defer></script>
+</body>
+</html>
