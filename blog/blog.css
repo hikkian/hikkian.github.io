@@ -1,14 +1,15 @@
-/* Blog pages. Load after ../style.css: they reuse its tokens and header, add only blog layout. */
+/* Blog pages. Load after ../style.css: they reuse its tokens and header, add only blog layout.
+   No hairlines: separation comes from space and from one step in surface tone. */
 
 .blog-main { padding-bottom: 96px; }
 
-.blog-head { padding-top: 64px; padding-bottom: 40px; border-bottom: 1px solid #262c29; }
+.blog-head { padding-top: 64px; padding-bottom: 40px; }
 .blog-head h1 { font-size: var(--step-head); font-weight: 700; letter-spacing: -0.02em; }
 .blog-head p { margin: 20px 0 0; max-width: 60ch; color: var(--muted); font-size: var(--step-lead); line-height: 1.45; }
 .blog-head .feed-link { display: inline-block; margin-top: 20px; font-size: var(--step-small); color: var(--muted); }
 
 .post-list { list-style: none; margin: 0; padding: 0; }
-.post-list li { padding: 32px 0; border-bottom: 1px solid #262c29; display: grid; gap: 8px; }
+.post-list li { padding: 32px 0; display: grid; gap: 8px; }
 .post-list time, .post-meta { font-size: var(--step-small); color: var(--muted); }
 .post-list h2 { font-size: var(--step-h3); font-weight: 650; letter-spacing: -0.015em; line-height: 1.2; }
 .post-list h2 a { text-decoration: none; }
@@ -16,34 +17,92 @@
 .post-list p { margin: 0; color: var(--muted); max-width: 66ch; }
 .empty { padding: 48px 0; color: var(--muted); }
 
+/* ---------- Post page ---------- */
+
 .post { padding-top: 56px; }
-.post-head { display: grid; gap: 14px; padding-bottom: 32px; border-bottom: 1px solid #262c29; margin-bottom: 40px; }
-.post-head h1 { font-size: var(--step-display); font-weight: 700; letter-spacing: -0.025em; line-height: 1.05; }
+.post-head { display: grid; gap: 14px; margin-bottom: 48px; }
+.post-head h1 { font-size: clamp(1.9rem, 1.2rem + 3vw, 3.5rem); font-weight: 700; letter-spacing: -0.025em; line-height: 1.08; text-wrap: balance; }
 .post-lead { font-size: var(--step-lead); color: var(--muted); max-width: 60ch; line-height: 1.5; margin: 0; }
 
+.toc { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 16px; font-size: var(--step-small); }
+.toc a { color: var(--muted); text-decoration: none; }
+.toc a:hover { color: var(--accent); }
+
 .post-body { max-width: 68ch; }
-.post-body h2 { font-size: var(--step-h3); font-weight: 650; letter-spacing: -0.015em; margin: 56px 0 16px; }
+.post-body h2 { font-size: var(--step-h3); font-weight: 650; letter-spacing: -0.015em; margin: 64px 0 18px; scroll-margin-top: 88px; }
 .post-body p { margin: 0 0 18px; }
 .post-body ul, .post-body ol { margin: 0 0 22px; padding-left: 22px; }
 .post-body li { margin-bottom: 8px; }
-.post-body code { font-family: var(--mono); font-size: 0.92em; background: var(--surface); padding: 1px 6px; border-radius: 4px; }
-.post-body pre { font-family: var(--mono); font-size: 0.85rem; background: var(--term); border: 1px solid #262c29; border-radius: 8px; padding: 16px; overflow-x: auto; line-height: 1.5; }
-.post-body pre code { background: none; padding: 0; }
+.post-body a { color: var(--accent); }
+
+/* Specs: four short tiles, one line each. */
+.spec { list-style: none; padding: 0; margin: 24px 0 28px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.spec li { margin: 0; padding: 18px 18px; background: var(--surface); border-radius: 8px; }
+
+/* Key numbers: big figure, one short line under it. */
+.stats { list-style: none; padding: 0; margin: 28px 0 36px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.stats li { margin: 0; padding: 24px 22px 26px; background: var(--surface); border-radius: 8px; display: grid; gap: 10px; align-content: start; }
+.stats b { font-size: clamp(2.25rem, 1.2rem + 2.6vw, 3.5rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1; color: var(--accent); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.stats b small { font-size: 0.42em; font-weight: 600; letter-spacing: 0; white-space: nowrap; }
+.stats span { color: var(--muted); font-size: var(--step-small); line-height: 1.45; }
+
+/* Layers: four steps, each one set in from the last, so the order reads as a climb. */
+.ladder { list-style: none; padding: 0; margin: 28px 0 32px; display: grid; gap: 8px; }
+.ladder li { margin: 0; padding: 22px 24px 24px; background: var(--surface); border-radius: 8px; }
+.ladder li:nth-child(1) { margin-left: 0; }
+.ladder li:nth-child(2) { margin-left: 24px; background: #212724; }
+.ladder li:nth-child(3) { margin-left: 48px; background: #262d2a; }
+.ladder li:nth-child(4) { margin-left: 72px; background: #2c3430; }
+.ladder h3 { font-size: 1.2rem; font-weight: 650; letter-spacing: -0.01em; color: var(--accent); }
+.ladder p { margin: 8px 0 0; }
+
+/* Loop diagram. Colours come from the page tokens, so it follows the theme. */
+.cycle { margin: 36px 0 44px; max-width: 420px; }
+.cycle svg { display: block; width: 100%; height: auto; }
+.cycle .node { fill: var(--surface); }
+.cycle .node-end { fill: var(--accent); }
+.cycle .label { fill: var(--ink); font-family: var(--font); font-size: 18px; font-weight: 600; text-anchor: middle; dominant-baseline: central; }
+.cycle .label-end { fill: var(--accent-ink); }
+.cycle .flow, .cycle .loop { fill: none; stroke: var(--muted); stroke-width: 2; }
+.cycle .arrowhead { fill: var(--muted); }
+.cycle figcaption { margin-top: 14px; font-size: var(--step-small); color: var(--muted); line-height: 1.5; }
+
+/* What I don't know: its own panel, the one place the post asks to be read slowly. */
+.unknown { margin: 44px 0 52px; padding: 28px 28px 10px; background: var(--surface); border-radius: 10px; }
+.unknown h3 { font-size: 1.25rem; font-weight: 650; letter-spacing: -0.01em; margin: 0 0 14px; }
+
+/* Principles as a checklist. The boxes are decoration; the list is read as text. */
+.checklist { list-style: none; padding: 0; margin: 24px 0 36px; display: grid; gap: 14px; }
+.checklist li { position: relative; margin: 0; padding-left: 40px; }
+.checklist li::before { content: ""; position: absolute; left: 0; top: 0.3em; width: 18px; height: 18px; border: 2px solid var(--accent); border-radius: 4px; box-sizing: border-box; }
+.checklist li::after { content: ""; position: absolute; left: 6px; top: 0.3em; width: 5px; height: 10px; border: solid var(--accent); border-width: 0 2px 2px 0; transform: rotate(45deg); }
+
+.links { display: flex; flex-wrap: wrap; gap: 12px 28px; margin-top: 40px; font-size: var(--step-small); }
+.links a { color: var(--accent); }
+
+.post-foot { margin-top: 64px; background: var(--surface); padding: 20px 24px; border-radius: 8px; font-size: var(--step-small); color: var(--muted); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 
 /* Numbers tables: wrap in .table-wrap so narrow screens scroll the table, not the page. */
 .table-wrap { overflow-x: auto; margin: 24px 0 28px; }
 .facts-table { width: 100%; border-collapse: collapse; font-size: var(--step-small); }
-.facts-table th, .facts-table td { text-align: left; padding: 10px 12px; border-bottom: 1px solid #262c29; vertical-align: top; }
+.facts-table th, .facts-table td { text-align: left; padding: 10px 12px; vertical-align: top; }
 .facts-table th { color: var(--muted); font-weight: 600; }
 .facts-table td:last-child { white-space: nowrap; }
 
-.post-foot { margin-top: 64px; padding-top: 24px; border-top: 1px solid #262c29; font-size: var(--step-small); color: var(--muted); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+@media (max-width: 760px) {
+  .stats { grid-template-columns: 1fr; }
+  .stats b { white-space: normal; }
+}
 
 @media (max-width: 600px) {
   .blog-head { padding-top: 40px; padding-bottom: 28px; }
   .post { padding-top: 36px; }
-  .post-head { margin-bottom: 28px; }
-  .post-body h2 { margin-top: 44px; }
+  .post-head { margin-bottom: 36px; }
+  .post-body h2 { margin-top: 48px; }
+  .spec { grid-template-columns: 1fr; }
+  .ladder li:nth-child(2) { margin-left: 12px; }
+  .ladder li:nth-child(3) { margin-left: 24px; }
+  .ladder li:nth-child(4) { margin-left: 36px; }
   .facts-table th, .facts-table td { padding: 8px 8px; }
   .facts-table td:last-child { white-space: normal; }
 }
