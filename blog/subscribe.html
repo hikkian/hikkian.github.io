@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Subscribe to the blog · Alisher Sharipov</title>
+<meta name="description" content="Notes from building a local AI coding setup on a consumer GPU: measured numbers, dead ends, and what comes next.">
+<meta name="theme-color" content="#111312">
+<link rel="canonical" href="https://hikkian.github.io/blog/">
+<link rel="alternate" type="application/rss+xml" title="Alisher Sharipov · Blog" href="feed.xml">
+<link rel="icon" href="../favicon.ico" sizes="32x32">
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="blog.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="name" href="../">Alisher Sharipov</a>
+    <nav aria-label="Sections">
+      <a href="../#projects" data-ru="Проекты">Projects</a>
+      <a href="../#work" data-ru="Опыт">Experience</a>
+      <a href="../#contact" data-ru="Контакты">Contact</a>
+      <a href="./" data-ru="Блог">Blog</a>
+      <button class="lang" type="button" id="lang" title="Русский / English">RU</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap blog sub-page">
+  <section class="blog-head">
+    <h1 data-ru="Подписка на блог">Subscribe to the blog</h1>
+    <p class="blog-lead" data-ru="Новые посты приходят через RSS. Скопируйте адрес ленты и вставьте его в любую RSS-читалку: Feedly, Inoreader, NetNewsWire или встроенную в браузер.">New posts come out through RSS. Copy the feed address and paste it into any RSS reader: Feedly, Inoreader, NetNewsWire, or the one built into your browser.</p>
+  </section>
+  <div class="sub-box">
+    <code id="feed-url">https://hikkian.github.io/blog/feed.xml</code>
+    <button type="button" id="copy-feed" class="btn" data-ru="Скопировать">Copy</button>
+  </div>
+  <p class="sub-note" data-ru="Если открыть адрес ленты прямо в браузере, вы увидите код. Так и должно быть: ленту читает программа, а не человек.">If you open the feed address in the browser itself, you will see code. That is expected: a feed is read by a program, not by a person.</p>
+  <p><a href="./" data-ru="← Все посты">← All posts</a></p>
+</main>
+
+<script>
+document.getElementById('copy-feed').addEventListener('click', function () {
+  var b = this, t = document.getElementById('feed-url').textContent;
+  (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(function () {
+    var o = b.textContent; b.textContent = document.documentElement.lang === 'ru' ? 'Скопировано' : 'Copied';
+    setTimeout(function () { b.textContent = o; }, 1500);
+  }).catch(function () {});
+});
+</script>
+
+<footer class="foot wrap">
+  <span>© 2026 Alisher Sharipov</span>
+  <a href="../" data-ru="На главную">Home</a>
+</footer>
+
+<script src="blog.js" defer></script>
+</body>
+</html>

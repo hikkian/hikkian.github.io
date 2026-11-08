@@ -164,3 +164,10 @@
   .facts-table td:last-child { white-space: normal; }
 }
 .cycle .loop { stroke-dasharray: 6 5; }
+
+/* Subscribe page */
+.sub-box { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin: 32px 0 16px; padding: 18px 20px; background: var(--surface); border-radius: 10px; }
+.sub-box code { font-size: 0.95rem; color: var(--accent); word-break: break-all; flex: 1 1 260px; }
+.sub-box .btn { cursor: pointer; border: 0; border-radius: 8px; padding: 10px 18px; background: var(--accent); color: var(--accent-ink); font: inherit; font-weight: 650; }
+.sub-note { color: var(--muted); max-width: 62ch; margin-bottom: 32px; }
+.sub-page { max-width: 760px; margin-inline: auto; padding-top: 72px; padding-bottom: 48px; } .sub-page h1 { margin-bottom: 16px; }
