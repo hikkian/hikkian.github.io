@@ -162,7 +162,7 @@
 
   /* Numbers count up once when they come into view. */
   if (!reduce && 'IntersectionObserver' in window) {
-    const nums = [...document.querySelectorAll('.numbers b')];
+    const nums = [...document.querySelectorAll('.numbers b')].map(b => b.querySelector('.num') || b);
     const count = el => {
       const final = el.textContent;
       const m = final.match(/^(\D*)(\d+(?:[.,]\d+)?)(.*)$/);
