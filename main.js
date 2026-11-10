@@ -123,17 +123,37 @@
         : mode === 'through' ? clamp(-r.top / (r.height - vh))
         : clamp((vh - r.top) / (vh * 0.75));
       el.style.setProperty('--p', p.toFixed(4));
-      if (el === flow) {
-        nodes.forEach(n => n.classList.toggle('on', p >= +n.dataset.at));
-        const t = clamp((p - 0.77) / 0.2);
-        tokens.textContent = Math.round(t * 1000).toLocaleString(lang === 'ru' ? 'ru' : 'en');
-      }
+      if (el === flow) { flowTarget = p; if (!flowRaf) flowRaf = requestAnimationFrame(flowStep); }
     }
   };
+  /* Flow: the dot travels node to node (stops measured from the real node circles) and is eased toward the
+     scroll position every frame, so wheel steps do not make it jump; a node lights up exactly when the dot reaches it. */
+  let stops = [], flowTarget = 0, flowShown = 0, flowRaf = 0;
+  const ats = nodes.map(n => +n.dataset.at);
+  const flowDraw = p => {
+    let x = stops[0] || 0;
+    for (let i = 0; i < stops.length - 1; i++) {
+      if (p >= ats[i + 1]) { x = stops[i + 1]; continue; }
+      if (p > ats[i]) x = stops[i] + (stops[i + 1] - stops[i]) * ((p - ats[i]) / (ats[i + 1] - ats[i]));
+      break;
+    }
+    flow.style.setProperty('--x', x.toFixed(1) + 'px');
+    nodes.forEach((n, i) => n.classList.toggle('on', x >= stops[i] - 0.5));
+    const t = clamp((p - ats[ats.length - 1]) / 0.2);
+    tokens.textContent = Math.round(t * 1000).toLocaleString(lang === 'ru' ? 'ru' : 'en');
+  };
+  const flowStep = () => {
+    flowShown += (flowTarget - flowShown) * 0.2;
+    if (Math.abs(flowTarget - flowShown) < 0.0005) flowShown = flowTarget;
+    flowDraw(flowShown);
+    flowRaf = flowShown === flowTarget ? 0 : requestAnimationFrame(flowStep);
+  };
   const measure = () => {
+    const fr = fill.getBoundingClientRect(), vertical = fr.height > fr.width;
+    stops = nodes.map(n => { const r = n.getBoundingClientRect(); return vertical ? r.top - fr.top : r.left - fr.left; });
     flow.style.setProperty('--w', fill.offsetWidth + 'px');
     flow.style.setProperty('--h', fill.offsetHeight + 'px');
-    frame();
+    frame(); flowDraw(flowShown);
   };
   addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(frame); } }, { passive: true });
   addEventListener('resize', measure, { passive: true });

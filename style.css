@@ -205,12 +205,12 @@ nav a { text-decoration: none; padding: 10px 0; }
 .flow-h { font-size: var(--step-head); font-weight: 700; letter-spacing: -0.02em; max-width: 16ch; }
 .flow-track { position: relative; }
 .flow-line { position: absolute; left: 0; right: 0; top: 13px; height: 4px; background: var(--surface-2); border-radius: 2px; }
-.flow-fill { position: absolute; inset: 0; background: var(--accent); transform-origin: 0 50%; transform: scaleX(var(--p, 0)); border-radius: 2px; }
+.flow-fill { position: absolute; left: 0; top: 0; bottom: 0; width: calc(var(--x, 0px) + 10px); background: var(--accent); border-radius: 2px; }
 .flow-dot { position: absolute; top: -8px; left: 0; width: 20px; height: 20px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 8px rgba(126, 224, 195, .18); /* taste-skill-ignore: the glowing request packet */
-  transform: translateX(calc(var(--p, 0) * (var(--w, 1000px) - 20px))); }
+  transform: translateX(var(--x, 0px)); }
 .flow-nodes { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; list-style: none; margin: 0; padding: 0; }
-.flow-nodes li { position: relative; padding-top: 48px; display: grid; gap: 10px; align-content: start; opacity: .28; transform: translateY(18px); transition: opacity .5s var(--ease), transform .5s var(--ease); }
-.flow-nodes li::before { content: ""; position: absolute; top: 5px; width: 20px; height: 20px; border-radius: 50%; background: var(--surface-2); transition: background-color .4s var(--ease); }
+.flow-nodes li { position: relative; padding-top: 48px; display: grid; gap: 10px; align-content: start; opacity: .28; transform: translateY(12px); transition: opacity .35s ease-out, transform .35s ease-out; }
+.flow-nodes li::before { content: ""; position: absolute; top: 5px; left: 0; width: 20px; height: 20px; border-radius: 50%; background: var(--surface-2); transition: background-color .2s ease-out; }
 .flow-nodes li.on { opacity: 1; transform: none; }
 .flow-nodes li.on::before { background: var(--accent); }
 .flow-nodes b { font-size: var(--step-lead); font-weight: 700; }
@@ -229,7 +229,7 @@ nav a { text-decoration: none; padding: 10px 0; }
 @media (prefers-reduced-motion: reduce) {
   .flow { height: auto; }
   .flow-stage { position: static; height: auto; padding: 120px 0; }
-  .flow-fill { transform: none; }
+  .flow-fill { width: 100%; height: 100%; }
   .flow-dot { display: none; }
   .flow-nodes li { opacity: 1; transform: none; }
   .flow-nodes li::before { background: var(--accent); }
@@ -242,8 +242,8 @@ html:not(.js) .flow-nodes li { opacity: 1; transform: none; }
   .flow { height: 320svh; }
   .flow-in { gap: 24px; }
   .flow-line { left: 9px; right: auto; top: 0; bottom: 0; width: 4px; height: auto; }
-  .flow-fill { transform-origin: 50% 0; transform: scaleY(var(--p, 0)); }
-  .flow-dot { left: -8px; top: 0; transform: translateY(calc(var(--p, 0) * (var(--h, 400px) - 20px))); }
+  .flow-fill { right: 0; width: auto; bottom: auto; height: calc(var(--x, 0px) + 10px); }
+  .flow-dot { left: -8px; top: 0; transform: translateY(var(--x, 0px)); }
   .flow-nodes { grid-template-columns: 1fr; gap: 18px; padding-left: 40px; }
   .flow-nodes li { padding-top: 0; }
   .flow-nodes li::before { left: -38px; top: 2px; }
