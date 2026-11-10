@@ -209,10 +209,11 @@ nav a { text-decoration: none; padding: 10px 0; }
 .flow-dot { position: absolute; top: -8px; left: 0; width: 20px; height: 20px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 8px rgba(126, 224, 195, .18); /* taste-skill-ignore: the glowing request packet */
   transform: translateX(var(--x, 0px)); }
 .flow-nodes { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; list-style: none; margin: 0; padding: 0; }
-.flow-nodes li { position: relative; padding-top: 48px; display: grid; gap: 10px; align-content: start; opacity: .28; transform: translateY(12px); transition: opacity .35s ease-out, transform .35s ease-out; }
-.flow-nodes li::before { content: ""; position: absolute; top: 5px; left: 0; width: 20px; height: 20px; border-radius: 50%; background: var(--surface-2); transition: background-color .2s ease-out; }
-.flow-nodes li.on { opacity: 1; transform: none; }
-.flow-nodes li.on::before { background: var(--accent); }
+.flow-nodes li { position: relative; padding-top: 48px; display: grid; gap: 10px; align-content: start; }
+.flow-nodes li > * { opacity: .28; transform: translateY(12px); transition: opacity .35s ease-out, transform .35s ease-out; }
+.flow-nodes li.on > * { opacity: 1; transform: none; }
+.flow-nodes li::before { content: ""; position: absolute; top: 5px; left: 0; width: 20px; height: 20px; border-radius: 50%; background: var(--accent); opacity: 0; transform: scale(.3); transition: opacity .2s ease-out, transform .25s cubic-bezier(.34,1.56,.64,1); }
+.flow-nodes li.on::before { opacity: 1; transform: none; }
 .flow-nodes b { font-size: var(--step-lead); font-weight: 700; }
 .flow-nodes span { line-height: 1.5; }
 .flow-count { font-size: var(--step-lead); color: var(--muted); }
@@ -231,12 +232,11 @@ nav a { text-decoration: none; padding: 10px 0; }
   .flow-stage { position: static; height: auto; padding: 120px 0; }
   .flow-fill { width: 100%; height: 100%; }
   .flow-dot { display: none; }
-  .flow-nodes li { opacity: 1; transform: none; }
-  .flow-nodes li::before { background: var(--accent); }
+  .flow-nodes li > *, .flow-nodes li::before { opacity: 1; transform: none; }
 }
 html:not(.js) .flow { height: auto; }
 html:not(.js) .flow-stage { position: static; height: auto; padding: 120px 0; }
-html:not(.js) .flow-nodes li { opacity: 1; transform: none; }
+html:not(.js) .flow-nodes li > *, html:not(.js) .flow-nodes li::before { opacity: 1; transform: none; }
 
 @media (max-width: 760px) {
   .flow { height: 320svh; }
