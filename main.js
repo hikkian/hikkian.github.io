@@ -10,9 +10,9 @@
   let lang = 'en';
 
   /* The live thing: Shura's measured decode speed by filled context, replayed at that speed. */
-  // Measured on an RX 7800 XT 16 GB with 1.5 GiB of VRAM left to the desktop.
+  // Measured 2026-11-10 on an RX 7800 XT 16 GB, ROCm 10.1, MTP on short/28k (100k profile without MTP), 1.5 GiB of VRAM left to the desktop.
   const data = [
-    { k: 'short', ru: 'коротком контексте', tps: 93, pp: 0 }, { k: '28k', tps: 79, pp: 1766 }, { k: '100k', tps: 57, pp: 1066 }
+    { k: 'short', ru: 'коротком контексте', tps: 96, pp: 0 }, { k: '28k', tps: 62, pp: 1574 }, { k: '100k', tps: 46, pp: 1203 }
   ];
   const answer = {
     en: 'payroll.py rounds every line before summing,\nso the rounding errors add up.\n\n- total = sum(round(x, 2) for x in lines)\n+ total = round(sum(lines), 2)\n\nTests: 48 of 48 passed.',
