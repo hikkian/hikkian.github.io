@@ -96,7 +96,7 @@ nav a { text-decoration: none; padding: 10px 0; }
 
 /* ---------- Numbers ---------- */
 .numbers ul { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
-.numbers li { background: var(--surface); border-radius: 14px; padding: 24px 22px; display: grid; gap: 8px; align-content: start; }
+.numbers li { background: var(--surface); border-radius: 14px; padding: 24px 22px; display: grid; gap: 8px; align-content: start; min-width: 0; overflow: hidden; }
 .numbers b { white-space: nowrap; font-size: clamp(2rem, 1.4rem + 1.8vw, 3rem); font-weight: 750; font-stretch: 110%; letter-spacing: -0.02em; line-height: 1; color: var(--accent); }
 .numbers span { font-size: var(--step-small); line-height: 1.45; }
 
